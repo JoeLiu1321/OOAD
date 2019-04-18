@@ -16,6 +16,7 @@ public class ClassUnitGenerator {
 		ClassFormat classFormat=new ConcreteFormat(className,x,y);
 		classFormat.setMethods(methods);
 		classFormat.setVariables(variables);
+
 		x+=300;
 		return classFormat;
 	}

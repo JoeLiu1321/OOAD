@@ -16,6 +16,8 @@ public abstract class ClassFormat implements Drawable{
 		setClassName(className);
 		setX(x);
 		setY(y);
+		width=200;
+		height=200;
 	}
 	public String getClassName(){
 		return this.className;
@@ -104,7 +106,7 @@ public abstract class ClassFormat implements Drawable{
 		int lineHeight=m.getHeight();
 		int width=this.width,height=this.height;
 		int x=this.x,y=this.y,middle=(x*2+width)/2,padding=5;
-		
+
 		g.drawRect(x,y,width,height);
 		y=drawClassName(g,middle,y+lineHeight);
 		
