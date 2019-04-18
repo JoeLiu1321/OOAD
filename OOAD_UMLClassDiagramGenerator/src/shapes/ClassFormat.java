@@ -11,15 +11,47 @@ public abstract class ClassFormat implements Drawable{
 	private String className;
 	private List<String> methods;
 	private List<String> variables;
-	private Map<String,String> relations;
-	public ClassFormat(String className) {
+	private int x,y,width,height;
+	public ClassFormat(String className,int x,int y) {
 		setClassName(className);
+		setX(x);
+		setY(y);
 	}
-
 	public String getClassName(){
 		return this.className;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 
 	public void setClassName(String className) {
 		this.className = className;
@@ -39,14 +71,6 @@ public abstract class ClassFormat implements Drawable{
 
 	public void setVariables(List<String> variables) {
 		this.variables = variables;
-	}
-
-	public Map<String, String> getRelations() {
-		return relations;
-	}
-
-	public void setRelations(Map<String, String> relations) {
-		this.relations = relations;
 	}
 	
 	protected int drawVariable(Graphics g,int x,int y) {
@@ -78,26 +102,20 @@ public abstract class ClassFormat implements Drawable{
 	public void draw(Graphics g) {
 		FontMetrics m =g.getFontMetrics();
 		int lineHeight=m.getHeight();
-		int weight=200,height=200;
-		int x=100,y=100,middle=(x*2+weight)/2,padding=5;
+		int width=this.width,height=this.height;
+		int x=this.x,y=this.y,middle=(x*2+width)/2,padding=5;
 		
-		g.drawRect(x,y,weight,height);
+		g.drawRect(x,y,width,height);
 		y=drawClassName(g,middle,y+lineHeight);
 		
 		y+=lineHeight;
-		g.drawLine(x, y,x+weight,y);
+		g.drawLine(x, y,x+width,y);
 		
 		y=drawVariable(g,x+padding,y);
 		
 		y+=lineHeight;
-		g.drawLine(x, y,x+weight,y);
+		g.drawLine(x, y,x+width,y);
 		
 		y=drawMethod(g,x+padding,y);
-		
-	}
-	
-	@Override
-	public boolean isDraw() {
-		return false;
 	}
 }

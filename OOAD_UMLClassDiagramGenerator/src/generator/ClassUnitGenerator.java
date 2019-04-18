@@ -1,73 +1,32 @@
 package generator;
-
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-
-import diagrams.Drawable;
+import java.util.List;
 import shapes.ClassFormat;
+import shapes.ConcreteFormat;
+import shapes.InterfaceFormat;
 
 public class ClassUnitGenerator {
-	private ClassFormat format;
 	private int x,y,width,height;
 	public ClassUnitGenerator(){
-		x=0;
-		y=0;
+		x=50;
+		y=50;
 		width=200;
 		height=200;
 	}
-	
-	public Drawable generateClassFormat(ClassFormat format) {
-		this.format=format;
-		int width=this.width,height=this.height;
-		int x=this.x,y=this.y,middle=(x*2+width)/2,padding=5;
-		Drawable drawable=new Drawable() {
-			@Override
-			public void draw(Graphics g) {
-//				FontMetrics m =g.getFontMetrics();
-//				int lineHeight=m.getHeight();
-//				g.drawRect(x,y,width,height);
-//				y=drawClassName(g,middle,y+lineHeight);
-//				
-//				y+=lineHeight;
-//				g.drawLine(x, y,x+width,y);
-//				
-//				y=drawVariable(g,x+padding,y);
-//				
-//				y+=lineHeight;
-//				g.drawLine(x, y,x+width,y);
-//				
-//				y=drawMethod(g,x+padding,y);
-				
-			}
-			
-		};
-		return drawable;
-		
+	public ClassFormat generateConcreteClassFormat(String className, List<String> methods,List<String>variables) {
+		ClassFormat classFormat=new ConcreteFormat(className,x,y);
+		classFormat.setMethods(methods);
+		classFormat.setVariables(variables);
+		x+=300;
+		return classFormat;
 	}
-	
-	private int drawVariable(Graphics g,int x,int y) {
-		FontMetrics m =g.getFontMetrics();
-		int lineHeight=m.getHeight();
-		for(String variable:format.getVariables()) {
-			y+=lineHeight;
-			g.drawString(variable, x, y);
-		}
-		return y;
+
+	public ClassFormat generateInterfaceClassFormat(String className, List<String> methods,List<String>variables) {
+		ClassFormat classFormat=new InterfaceFormat(className,x,y);
+		classFormat.setMethods(methods);
+		classFormat.setVariables(variables);
+		x+=300;
+		return classFormat;
 	}
-	
-	private int drawMethod(Graphics g,int x,int y) {
-		FontMetrics m =g.getFontMetrics();
-		int lineHeight=m.getHeight();
-		for(String method:this.format.getMethods()) {
-			y+=lineHeight;
-			g.drawString(method, x, y);
-		}
-		return y;
-	}
-	
-	private int drawClassName(Graphics g,int x,int y) {
-		g.drawString(this.format.getClassName(), x, y);
-		return y;
-	}
-	
+
+
 }
