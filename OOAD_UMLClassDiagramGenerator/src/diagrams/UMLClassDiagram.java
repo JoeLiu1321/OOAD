@@ -7,11 +7,30 @@ import shapes.Relation;
 public class UMLClassDiagram{
 	private Map<String,ClassFormat> classFormatCollection;
 	private List<Relation> relations;
-	public UMLClassDiagram() {
+	private int width,height;
+	public UMLClassDiagram(int width,int height) {
 		classFormatCollection=new TreeMap<>();
 		relations=new ArrayList<>();
+		setWidth(width);
+		setHeight(height);
 	}
-	
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 	public void addToDiagram(ClassFormat format){
 		classFormatCollection.put(format.getClassName(), format);
 	}
@@ -27,7 +46,10 @@ public class UMLClassDiagram{
 	public Iterator<Relation> createRelationIterator(){
 		return relations.iterator();
 	}
-	
+
+	public ClassFormat getClassFormat(String className){
+		return classFormatCollection.get(className);
+	}
 	public void deleteClassFormat(String className){
 		classFormatCollection.remove(className);
 	}

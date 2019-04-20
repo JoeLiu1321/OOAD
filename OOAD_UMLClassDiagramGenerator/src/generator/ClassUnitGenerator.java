@@ -13,7 +13,7 @@ public class ClassUnitGenerator {
 		height=200;
 	}
 	public ClassFormat generateConcreteClassFormat(String className, List<String> methods,List<String>variables) {
-		ClassFormat classFormat=new ConcreteFormat(className,x,y);
+		ClassFormat classFormat=new ConcreteFormat(className,x,y,width,height);
 		classFormat.setMethods(methods);
 		classFormat.setVariables(variables);
 
@@ -22,7 +22,7 @@ public class ClassUnitGenerator {
 	}
 
 	public ClassFormat generateInterfaceClassFormat(String className, List<String> methods,List<String>variables) {
-		ClassFormat classFormat=new InterfaceFormat(className,x,y);
+		ClassFormat classFormat=new InterfaceFormat(className,x,y,width,height);
 		classFormat.setMethods(methods);
 		classFormat.setVariables(variables);
 		x+=300;

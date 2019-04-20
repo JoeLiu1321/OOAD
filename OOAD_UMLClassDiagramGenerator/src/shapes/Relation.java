@@ -13,10 +13,18 @@ public class Relation implements Drawable {
         setStartClass(startClass);
         setEndClass(endClass);
         setRelationType(relationType);
-        setStartX(startClass.getX());
-        setStartY(startClass.getY());
-        setEndX(endClass.getX());
-        setEndY(endClass.getY());
+        setStartX(startClass.x);
+        setStartY(startClass.y);
+        setEndX(endClass.x);
+        setEndY(endClass.y);
+    }
+
+    public ClassFormat getStartClass() {
+        return startClass;
+    }
+
+    public ClassFormat getEndClass() {
+        return endClass;
     }
 
     public void setStartX(int startX) {

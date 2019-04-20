@@ -1,45 +1,60 @@
 package application;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Arrays;
-
-import javax.swing.JFrame;
-
-import diagrams.RelationType;
+import javax.swing.*;
 import diagrams.UMLClassDiagram;
 import diagrams.UMLClassDiagramDrawer;
-import diagrams.Drawable;
-import generator.ClassRelationGenerator;
+import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;
-import shapes.ClassFormat;
-import shapes.ConcreteFormat;
-import shapes.Relation;
+import listeners.Listener;
+import listeners.ListenerHandler;
 
 public class Main{
 	public static void main(String[] args) {
 		String[]methods= {"public void get()","public void set()"};
 		String[]variables= {"int i","int j"};
+		String[]classNames={"FileOutputFormat","FileOutputFormatImpl","ClassDiagramGenerator","UmlClassDiagram","relation",
+				"UserManager","User","ClassRelationGenerator","ClassUnitGenerator"};
 		Toolkit tk = Toolkit.getDefaultToolkit();
 	    Dimension d = tk.getScreenSize();
 	    int width=(int)d.getWidth(),height=(int)d.getHeight();
-	    UMLClassDiagram diagram=new UMLClassDiagram();
+	    UMLClassDiagram diagram=new UMLClassDiagram(width,height);
 		ClassUnitGenerator unitGenerator=new ClassUnitGenerator();
-		ClassRelationGenerator relationGenerator=new ClassRelationGenerator();
+		for(String className:classNames)
+			diagram.addToDiagram(unitGenerator.generateConcreteClassFormat(className,Arrays.asList(methods),Arrays.asList(variables)));
 
-		ClassFormat startClass=unitGenerator.generateConcreteClassFormat("Derry",Arrays.asList(methods),Arrays.asList(variables));
-		ClassFormat endClass=unitGenerator.generateInterfaceClassFormat("Joe",Arrays.asList(methods),Arrays.asList(variables));
-		Relation relation=relationGenerator.generateRelation(startClass,endClass, RelationType.Association);
-		diagram.addToDiagram(startClass);
-	    diagram.addToDiagram(endClass);
-		diagram.addToDiagram(relation);
-	    UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
-				    
-	    JFrame frame=new JFrame("test Panel");
+		UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
+		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram,drawer);
+		arrangeCalculator.arrange();
+		ListenerHandler listenerHandler=new ListenerHandler(arrangeCalculator);
+		Listener listener=new Listener(drawer,listenerHandler);
+		JPanel checkBoxGroup=getCheckBoxGroup(listener);
+		JFrame frame=new JFrame("test Panel");
 	    frame.setSize(width,height);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.add(drawer);
-	   
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		drawer.add(checkBoxGroup);
+
+		frame.add(drawer);
 	    frame.setVisible(true);
+
 	}
+	public static JPanel getCheckBoxGroup(Listener listener){
+		JPanel panel=new JPanel();
+		ButtonGroup group=new ButtonGroup();
+		JRadioButton moveUnit=new JRadioButton("Move Unit");
+		JRadioButton addRelation=new JRadioButton("Add Relation");
+		JRadioButton removeRelation=new JRadioButton("Remove Relation");
+		moveUnit.addItemListener(listener.moveUnit);
+		addRelation.addItemListener(listener.addRelation);
+		removeRelation.addItemListener(v->{System.out.println("remove");});
+		group.add(moveUnit);
+		group.add(addRelation);
+		group.add(removeRelation);
+
+		panel.add(moveUnit);
+		panel.add(addRelation);
+		panel.add(removeRelation);
+		return panel;
+	}
+
 }
