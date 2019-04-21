@@ -1,13 +1,13 @@
-package application;
+package main.application;
 import java.awt.*;
 import java.util.Arrays;
 import javax.swing.*;
-import diagrams.UMLClassDiagram;
-import diagrams.UMLClassDiagramDrawer;
-import generator.ArrangeCalculator;
-import generator.ClassUnitGenerator;
-import listeners.Listener;
-import listeners.ListenerHandler;
+import main.diagrams.UMLClassDiagram;
+import main.diagrams.UMLClassDiagramDrawer;
+import main.generator.ArrangeCalculator;
+import main.generator.ClassUnitGenerator;
+import main.listeners.Listener;
+import main.listeners.ListenerHandler;
 
 public class Main{
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main{
 			diagram.addToDiagram(unitGenerator.generateConcreteClassFormat(className,Arrays.asList(methods),Arrays.asList(variables)));
 
 		UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
-		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram,drawer);
+		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();
 		ListenerHandler listenerHandler=new ListenerHandler(arrangeCalculator);
 		Listener listener=new Listener(drawer,listenerHandler);

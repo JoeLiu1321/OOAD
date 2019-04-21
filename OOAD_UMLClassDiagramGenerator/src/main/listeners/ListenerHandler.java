@@ -1,6 +1,6 @@
-package listeners;
+package main.listeners;
 
-import generator.ArrangeCalculator;
+import main.generator.ArrangeCalculator;
 import java.awt.*;
 
 public class ListenerHandler {
@@ -9,10 +9,17 @@ public class ListenerHandler {
     public ListenerHandler(ArrangeCalculator arrangeCalculator){
         this.arrangeCalculator=arrangeCalculator;
     }
-    public void notify(Point start, Point end){
+
+    public void executeAddRelation(Point start, Point end){
         this.start=start;
         this.end=end;
         arrangeCalculator.calculateArrange(start,end);
+    }
+
+    public void executeMoveUnit(Point start , Point end){
+        this.start=start;
+        this.end=end;
+        arrangeCalculator.moveUnit(start,end);
     }
 
 }

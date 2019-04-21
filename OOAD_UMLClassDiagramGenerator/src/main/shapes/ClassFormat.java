@@ -1,8 +1,8 @@
-package shapes;
+package main.shapes;
 
 import java.awt.*;
 import java.util.List;
-import diagrams.Drawable;
+import main.diagrams.Drawable;
 
 public abstract class ClassFormat extends Rectangle implements Drawable{
 	private String className;

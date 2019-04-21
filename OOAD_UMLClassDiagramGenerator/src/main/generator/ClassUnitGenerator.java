@@ -1,8 +1,8 @@
-package generator;
+package main.generator;
 import java.util.List;
-import shapes.ClassFormat;
-import shapes.ConcreteFormat;
-import shapes.InterfaceFormat;
+import main.shapes.ClassFormat;
+import main.shapes.ConcreteFormat;
+import main.shapes.InterfaceFormat;
 
 public class ClassUnitGenerator {
 	private int x,y,width,height;

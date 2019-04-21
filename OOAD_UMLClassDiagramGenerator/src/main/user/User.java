@@ -1,4 +1,4 @@
-package user;
+package main.user;
 
 public class User {
 	private int level;

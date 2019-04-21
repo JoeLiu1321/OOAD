@@ -1,7 +1,7 @@
-package shapes;
+package main.shapes;
 
-import diagrams.Drawable;
-import diagrams.RelationType;
+import main.diagrams.Drawable;
+import main.diagrams.RelationType;
 
 import java.awt.*;
 

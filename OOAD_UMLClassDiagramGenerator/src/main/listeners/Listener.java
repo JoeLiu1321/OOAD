@@ -1,6 +1,6 @@
-package listeners;
+package main.listeners;
 
-import diagrams.UMLClassDiagramDrawer;
+import main.diagrams.UMLClassDiagramDrawer;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -56,7 +56,7 @@ public class Listener {
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
             end=e.getPoint();
-            listenerHandler.notify((Point)start.clone(),(Point)end.clone());
+            listenerHandler.executeAddRelation((Point)start.clone(),(Point)end.clone());
         }
     };
 
@@ -77,12 +77,14 @@ public class Listener {
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
+            start=e.getPoint();
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
-
+            end=e.getPoint();
+            listenerHandler.executeMoveUnit((Point)start.clone(),(Point)end.clone());
         }
     };
 }

@@ -1,4 +1,4 @@
-package diagrams;
+package main.diagrams;
 
 import java.awt.Graphics;
 

@@ -1,8 +1,8 @@
-package generator;
+package main.generator;
 
-import diagrams.RelationType;
-import shapes.ClassFormat;
-import shapes.Relation;
+import main.diagrams.RelationType;
+import main.shapes.ClassFormat;
+import main.shapes.Relation;
 
 public class ClassRelationGenerator {
 
