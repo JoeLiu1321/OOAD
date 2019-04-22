@@ -1,4 +1,4 @@
-package main.user;
+package user;
 
 public class UserManager {
 	private User user;

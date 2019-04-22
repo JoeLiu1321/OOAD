@@ -1,17 +1,59 @@
-package main.shapes;
+package shapes;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
-import main.diagrams.Drawable;
+import java.util.Observer;
+
+import diagrams.Drawable;
+import javafx.beans.Observable;
 
 public abstract class ClassFormat extends Rectangle implements Drawable{
 	private String className;
+	private List<Relation> relations;
 	private List<String> methods;
 	private List<String> variables;
 	public ClassFormat(String className,int x,int y,int width,int height) {
 		super(x,y,width,height);
 		setClassName(className);
+		relations=new ArrayList<>();
 	}
+
+	@Override
+	public boolean contains(Point2D p){
+		if(width<=0 || height<=0)
+			return false;
+		else{
+			if((p.getX()>=x && p.getX()<=x+width) && (p.getY()>=y && p.getY()<=y+height))
+				return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public void setLocation(int x,int y){
+		int offsetX=x-this.x,offsetY=y-this.y;
+		Point offset=new Point(offsetX,offsetY);
+		super.setLocation(x,y);
+		notifyRelations(offset,this);
+
+	}
+
+	public void notifyRelations(Point offset,ClassFormat classFormat){
+		for(Relation relation:relations)
+			relation.update(offset.clone(),classFormat);
+	}
+
+	public void regisiterRelation(Relation relation){
+		relations.add(relation);
+	}
+
+	public void unregisiterRelation(Relation relation){
+		relations.remove(relation);
+	}
+
 	public String getClassName(){
 		return this.className;
 	}
@@ -69,8 +111,8 @@ public abstract class ClassFormat extends Rectangle implements Drawable{
 		int x=this.x,y=this.y,middle=(x*2+width)/2,padding=5;
 
 		g.drawRect(x,y,width,height);
-		y=drawClassName(g,middle,y+lineHeight);
-		
+//		y=drawClassName(g,middle,y+lineHeight);
+		y=drawClassName(g,x+padding,y+lineHeight);
 		y+=lineHeight;
 		g.drawLine(x, y,x+width,y);
 		

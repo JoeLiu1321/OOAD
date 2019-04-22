@@ -1,4 +1,4 @@
-package main.output;
+package output;
 
 public class OutputManager {
 	private String outputPath;

@@ -1,13 +1,13 @@
-package main.application;
+package application;
 import java.awt.*;
 import java.util.Arrays;
 import javax.swing.*;
-import main.diagrams.UMLClassDiagram;
-import main.diagrams.UMLClassDiagramDrawer;
-import main.generator.ArrangeCalculator;
-import main.generator.ClassUnitGenerator;
-import main.listeners.Listener;
-import main.listeners.ListenerHandler;
+import diagrams.UMLClassDiagram;
+import diagrams.UMLClassDiagramDrawer;
+import generator.ArrangeCalculator;
+import generator.ClassUnitGenerator;
+import listeners.Listener;
+import listeners.ListenerHandler;
 
 public class Main{
 	public static void main(String[] args) {
@@ -44,16 +44,20 @@ public class Main{
 		JRadioButton moveUnit=new JRadioButton("Move Unit");
 		JRadioButton addRelation=new JRadioButton("Add Relation");
 		JRadioButton removeRelation=new JRadioButton("Remove Relation");
+		JRadioButton removeUnit=new JRadioButton("Remove Unit");
 		moveUnit.addItemListener(listener.moveUnit);
+
 		addRelation.addItemListener(listener.addRelation);
 		removeRelation.addItemListener(v->{System.out.println("remove");});
+		removeUnit.addItemListener(listener.removeUnit);
 		group.add(moveUnit);
 		group.add(addRelation);
 		group.add(removeRelation);
-
+		group.add(removeUnit);
 		panel.add(moveUnit);
 		panel.add(addRelation);
 		panel.add(removeRelation);
+		panel.add(removeUnit);
 		return panel;
 	}
 

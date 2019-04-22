@@ -1,4 +1,4 @@
-package main.diagrams;
+package diagrams;
 
 import java.awt.Graphics;
 import java.util.Iterator;
@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-import main.shapes.ClassFormat;
-import main.shapes.Relation;
+import shapes.ClassFormat;
+import shapes.Relation;
 
 public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	private UMLClassDiagram diagram;

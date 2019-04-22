@@ -1,4 +1,4 @@
-package main.shapes;
+package shapes;
 
 public class InterfaceFormat extends ClassFormat {
 	public InterfaceFormat(String className, int x, int y, int width, int height) {

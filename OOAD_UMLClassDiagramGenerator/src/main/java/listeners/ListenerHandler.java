@@ -1,6 +1,8 @@
-package main.listeners;
+package listeners;
 
-import main.generator.ArrangeCalculator;
+import generator.ArrangeCalculator;
+import shapes.ClassFormat;
+
 import java.awt.*;
 
 public class ListenerHandler {
@@ -20,6 +22,11 @@ public class ListenerHandler {
         this.start=start;
         this.end=end;
         arrangeCalculator.moveUnit(start,end);
+    }
+
+    public void executeRemoveUnit(Point start){
+        ClassFormat classFormat=arrangeCalculator.checkPointContains(start);
+        arrangeCalculator.removeUnit(classFormat);
     }
 
 }

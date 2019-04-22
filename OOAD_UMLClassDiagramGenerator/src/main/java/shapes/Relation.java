@@ -1,11 +1,13 @@
-package main.shapes;
+package shapes;
 
-import main.diagrams.Drawable;
-import main.diagrams.RelationType;
+import diagrams.Drawable;
+import diagrams.RelationType;
 
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Relation implements Drawable {
+public class Relation implements Drawable{
     private ClassFormat startClass,endClass;
     private RelationType relationType;
     private int startX,endX,startY,endY;
@@ -17,6 +19,8 @@ public class Relation implements Drawable {
         setStartY(startClass.y);
         setEndX(endClass.x);
         setEndY(endClass.y);
+        startClass.regisiterRelation(this);
+        endClass.regisiterRelation(this);
     }
 
     public ClassFormat getStartClass() {
@@ -57,7 +61,23 @@ public class Relation implements Drawable {
 
     @Override
     public void draw(Graphics g) {
-        g.drawString(relationType.toString(),(startX+endX)/2,startY);
+        g.drawString(relationType.toString(),(startX+endX)/2,(startY+endY)/2);
         g.drawLine(startX,startY,endX,endY);
+    }
+
+    public void update(Object location,ClassFormat classFormat) {
+        Point point=(Point)location;
+        if(point!=null){
+            int offsetX=point.x,offsetY=point.y;
+            if(classFormat==startClass){
+               startX+=offsetX;
+               startY+=offsetY;
+            }
+            else{
+                endX+=offsetX;
+                endY+=offsetY;
+            }
+        }
+
     }
 }

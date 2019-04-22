@@ -1,9 +1,9 @@
-package main.diagrams;
+package diagrams;
 import java.util.*;
 import java.util.List;
 
-import main.shapes.ClassFormat;
-import main.shapes.Relation;
+import shapes.ClassFormat;
+import shapes.Relation;
 
 public class UMLClassDiagram extends Observable{
 	private Map<String,ClassFormat> classFormatCollection;
@@ -75,8 +75,11 @@ public class UMLClassDiagram extends Observable{
 		return classFormatCollection.get(className);
 	}
 
-	public void deleteClassFormat(String className){
-		classFormatCollection.remove(className);
+	public void removeClassFormat(ClassFormat classFormat){
+		if(classFormat!=null && classFormatCollection.containsKey(classFormat.getClassName())) {
+			classFormatCollection.remove(classFormat.getClassName());
+			notifyObservers();
+		}
 	}
 
 }

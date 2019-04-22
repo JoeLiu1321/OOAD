@@ -1,4 +1,4 @@
-package main.diagrams;
+package diagrams;
 
 public enum  RelationType {
     Extension,

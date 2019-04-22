@@ -1,6 +1,6 @@
-package main.listeners;
+package listeners;
 
-import main.diagrams.UMLClassDiagramDrawer;
+import diagrams.UMLClassDiagramDrawer;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -45,6 +45,16 @@ public class Listener {
         }
     };
 
+    public ItemListener removeUnit=new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getStateChange()==1)
+                drawer.addMouseListener(removeUnitAdapter);
+            else if(e.getStateChange()==2)
+                drawer.removeMouseListener(removeUnitAdapter);
+        }
+    };
+
     private MouseAdapter addRelationAdapter=new MouseAdapter() {
         @Override
         public void mousePressed(MouseEvent e) {
@@ -85,6 +95,14 @@ public class Listener {
             super.mouseReleased(e);
             end=e.getPoint();
             listenerHandler.executeMoveUnit((Point)start.clone(),(Point)end.clone());
+        }
+    };
+
+    private MouseAdapter removeUnitAdapter=new MouseAdapter() {
+        @Override
+        public void mousePressed(MouseEvent e) {
+            super.mousePressed(e);
+            listenerHandler.executeRemoveUnit(e.getPoint());
         }
     };
 }
