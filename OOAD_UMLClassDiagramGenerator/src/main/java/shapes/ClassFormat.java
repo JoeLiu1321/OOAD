@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Observer;
 
 import diagrams.Drawable;
-import javafx.beans.Observable;
 
 public abstract class ClassFormat extends Rectangle implements Drawable{
 	private String className;
