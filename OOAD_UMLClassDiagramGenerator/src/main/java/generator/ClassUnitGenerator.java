@@ -1,5 +1,9 @@
 package generator;
+import java.util.ArrayList;
 import java.util.List;
+
+import ClassDetailInfo.*;
+import adapter.ClassDetailInfoDTO;
 import shapes.ClassFormat;
 import shapes.ConcreteFormat;
 import shapes.InterfaceFormat;
@@ -12,12 +16,18 @@ public class ClassUnitGenerator {
 		width=200;
 		height=200;
 	}
+
+	public ClassFormat generateConcreteClassFormat(ClassDetailInfoDTO dto) {
+		ClassFormat classFormat=new ConcreteFormat(dto.getClassName(),x,y,width,height);
+		classFormat.setMethods(dto.getMethods());
+		classFormat.setVariables(dto.getVariables());
+		return classFormat;
+	}
+
 	public ClassFormat generateConcreteClassFormat(String className, List<String> methods,List<String>variables) {
 		ClassFormat classFormat=new ConcreteFormat(className,x,y,width,height);
 		classFormat.setMethods(methods);
 		classFormat.setVariables(variables);
-
-		x+=300;
 		return classFormat;
 	}
 
@@ -25,7 +35,6 @@ public class ClassUnitGenerator {
 		ClassFormat classFormat=new InterfaceFormat(className,x,y,width,height);
 		classFormat.setMethods(methods);
 		classFormat.setVariables(variables);
-		x+=300;
 		return classFormat;
 	}
 
