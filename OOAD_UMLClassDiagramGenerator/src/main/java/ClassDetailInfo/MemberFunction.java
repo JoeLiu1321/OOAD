@@ -11,28 +11,6 @@ public class MemberFunction extends ClassMemberAbstract{
 	}
 
 	@Override
-	public String toString(){
-		StringBuilder builder=new StringBuilder();
-		switch (_reference){
-			case "Public":
-				builder.append(" + ");
-				break;
-			case "Private":
-				builder.append(" - ");
-				break;
-			case "Protected":
-				builder.append(" # ");
-				break;
-			case "Package":
-				builder.append(" ~ ");
-			default:
-				break;
-		}
-		builder.append(_functuonName).append("()").append(" : ").append(_functuonType);
-		return builder.toString();
-	}
-
-	@Override
 	public String getType() {
 		return _functuonType;
 	}

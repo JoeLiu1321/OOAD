@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassDetailInfoDTO {
-    private ClassDetailInfo classDetailInfo;
     private List<String> methods;
     private List<String> variables;
     private String className;
@@ -27,7 +26,6 @@ public class ClassDetailInfoDTO {
     }
 
     public void setClassDetailInfo(ClassDetailInfo classDetailInfo) {
-        this.classDetailInfo = classDetailInfo;
         parseClassName(classDetailInfo);
         parseMethod(classDetailInfo);
         parseVariable(classDetailInfo);
@@ -37,7 +35,7 @@ public class ClassDetailInfoDTO {
         List<ClassMemberAbstract>memberMethods=classDetailInfo.getMemberFunction();
         List<String>methods=new ArrayList<>();
         for(ClassMemberAbstract c:memberMethods)
-            methods.add(c.toString());
+            methods.add(parseFormat(c));
         this.methods=methods;
     }
 
@@ -45,11 +43,35 @@ public class ClassDetailInfoDTO {
         List<ClassMemberAbstract>memberVariable=classDetailInfo.getMemberVariable();
         List<String>variables=new ArrayList<>();
         for(ClassMemberAbstract c:memberVariable)
-            variables.add(c.toString());
+            variables.add(parseFormat(c));
         this.variables=variables;
     }
 
     private void parseClassName(ClassDetailInfo classDetailInfo){
         this.className=classDetailInfo.getClassName();
     }
+
+    public String parseFormat(ClassMemberAbstract classMemberAbstract){
+        StringBuilder builder=new StringBuilder();
+        switch (classMemberAbstract.getReference()){
+            case "Public":
+                builder.append(" + ");
+                break;
+            case "Private":
+                builder.append(" - ");
+                break;
+            case "Protected":
+                builder.append(" # ");
+                break;
+            case "Package":
+                builder.append(" ~ ");
+            default:
+                break;
+        }
+        builder.append(classMemberAbstract.getName()).append(" : ").append(classMemberAbstract.getType());
+        return builder.toString();
+    }
+
 }
+
+

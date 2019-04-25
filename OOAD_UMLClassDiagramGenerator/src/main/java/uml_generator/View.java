@@ -44,6 +44,7 @@ public class View {
 	private JTable functionTable;
 	private JTable relationshipTable;
     private Tool tool = new Tool();
+    private int counter = 1;
     private ClassDetailInfo gp = new ClassDetailInfo();
 	public Map<String,ClassDetailInfo> getVariableList()
 	{
@@ -324,11 +325,11 @@ public class View {
 		btnReadName.setBackground(Color.BLACK);
 		btnReadName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {			
-				if ( textName.getText() != null && textName.getText() != "" ) {
+				if ( textName.getText() != null && !textName.getText().equals(""))
 					gp.setClassName(textName.getText());
-					tool.showOnTextArea(textShowDetail, gp);
-				}
-				
+				else
+					gp.setClassName("");
+				tool.showOnTextArea(textShowDetail, gp);
 				
 			}
 		});
@@ -389,6 +390,10 @@ public class View {
 				tool.clearTableValue(relationshipTable);
 				textShowDetail.setText("");
 				tabbedPane.setSelectedComponent(drawer);
+				if (gp.getClassName().equals("")){
+					gp.setClassName("NewClass"+counter);
+					counter++;
+				}
 				ClassDetailInfoDTO dto=new ClassDetailInfoDTO(gp);
 				ClassFormat classFormat=unitGenerator.generateConcreteClassFormat(dto);
 				diagram.addToDiagram(classFormat);
@@ -506,7 +511,6 @@ public class View {
 		comboBox_relationship.addItem("Composition");
 		comboBox_relationship.addItem("Dependency");
 		referenceColumn_relationship.setCellEditor(new DefaultCellEditor(comboBox_relationship));
-//		System.out.println(variableList.size());
 	}
 
 }

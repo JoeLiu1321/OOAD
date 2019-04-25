@@ -1,8 +1,6 @@
 package generator;
-import java.util.ArrayList;
-import java.util.List;
 
-import ClassDetailInfo.*;
+import java.util.List;
 import adapter.ClassDetailInfoDTO;
 import shapes.ClassFormat;
 import shapes.ConcreteFormat;

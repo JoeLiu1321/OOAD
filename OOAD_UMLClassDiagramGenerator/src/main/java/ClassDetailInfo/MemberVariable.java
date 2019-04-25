@@ -9,28 +9,6 @@ public class MemberVariable extends ClassMemberAbstract{
 		_variableType = variableType;
 		_variableName = variableName;
 	}
-	@Override
-	public String toString(){
-		StringBuilder builder=new StringBuilder();
-		switch (_reference){
-			case "Public":
-				builder.append(" + ");
-				break;
-			case "Private":
-				builder.append(" - ");
-				break;
-			case "Protected":
-				builder.append(" # ");
-				break;
-			case "Packaged":
-				builder.append(" ~ ");
-				break;
-			default:
-				break;
-		}
-		builder.append(_variableName).append(" : ").append(_variableType);
-		return builder.toString();
-	}
 
 	@Override
 	public String getReference() {

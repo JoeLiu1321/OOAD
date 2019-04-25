@@ -21,7 +21,7 @@ public class Main{
 	    UMLClassDiagram diagram=new UMLClassDiagram(width,height);
 		ClassUnitGenerator unitGenerator=new ClassUnitGenerator();
 		for(String className:classNames)
-			diagram.addToDiagram(unitGenerator.generateConcreteClassFormat(className,Arrays.asList(methods),Arrays.asList(variables)));
+			diagram.addToDiagram(unitGenerator.generateInterfaceClassFormat(className,Arrays.asList(methods),Arrays.asList(variables)));
 
 		UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
 		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram);

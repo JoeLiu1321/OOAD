@@ -12,7 +12,7 @@ public class ClassDetailInfoDTOTest {
     public void setUp(){
         ClassRelarionship relation=new ClassRelarionship("implement","main");
         MemberVariable variable=new MemberVariable("Public","int","test");
-        MemberFunction method =new MemberFunction("Public","int","test");
+        MemberFunction method =new MemberFunction("Public","int","test()");
 
          ClassDetailInfo info=new ClassDetailInfo("main",variable,method,relation);
          dto=new ClassDetailInfoDTO(info);
