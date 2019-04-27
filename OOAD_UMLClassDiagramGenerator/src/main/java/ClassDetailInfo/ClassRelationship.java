@@ -1,9 +1,9 @@
 package ClassDetailInfo;
 
-public class ClassRelarionship extends ClassMemberAbstract {
+public class ClassRelationship extends ClassMemberAbstract {
     private String _realtionship, _className;
-    public ClassRelarionship() {}
-    public ClassRelarionship(String realtionship, String className) 
+    public ClassRelationship() {}
+    public ClassRelationship(String realtionship, String className)
     {
     	_realtionship = realtionship;
     	_className = className;

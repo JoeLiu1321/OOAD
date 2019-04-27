@@ -23,12 +23,32 @@ public class Relation implements Drawable{
         endClass.regisiterRelation(this);
     }
 
+    public RelationType getRelationType() {
+        return relationType;
+    }
+
     public ClassFormat getStartClass() {
         return startClass;
     }
 
     public ClassFormat getEndClass() {
         return endClass;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getEndX() {
+        return endX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getEndY() {
+        return endY;
     }
 
     public void setStartX(int startX) {

@@ -1,21 +1,18 @@
 /**
  * 
  */
-package UnitTest;
+package ClassDetailInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ClassDetailInfo.ClassMemberAbstract;
-import ClassDetailInfo.ClassRelarionship;
-
 /**
  * @author GP
  *
  */
-class ClassRelarionshipTest {
+class ClassRelationshipTest {
 
 	/**
 	 * @throws Exception
@@ -23,7 +20,7 @@ class ClassRelarionshipTest {
 	private ClassMemberAbstract relation;
 	@BeforeEach
 	void setUp() throws Exception {
-		relation = new ClassRelarionship();
+		relation = new ClassRelationship();
 		relation.setReference("Extension");
 		relation.setName("GP");
 		
@@ -31,7 +28,7 @@ class ClassRelarionshipTest {
 	}
 
 	/**
-	 * Test method for {@link ClassRelarionship#reSet()}.
+	 * Test method for {@link ClassRelationship#reSet()}.
 	 */
 	@Test
 	void testReSet() {
@@ -42,7 +39,7 @@ class ClassRelarionshipTest {
 	}
 
 	/**
-	 * Test method for {@link ClassRelarionship#getReference()}.
+	 * Test method for {@link ClassRelationship#getReference()}.
 	 */
 	@Test
 	void testGetReference() {
@@ -50,7 +47,7 @@ class ClassRelarionshipTest {
 	}
 
 	/**
-	 * Test method for {@link ClassRelarionship#getName()}.
+	 * Test method for {@link ClassRelationship#getName()}.
 	 */
 	@Test
 	void testGetName() {

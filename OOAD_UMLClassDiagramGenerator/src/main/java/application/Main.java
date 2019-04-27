@@ -20,9 +20,10 @@ public class Main{
 	    int width=(int)d.getWidth(),height=(int)d.getHeight();
 	    UMLClassDiagram diagram=new UMLClassDiagram(width,height);
 		ClassUnitGenerator unitGenerator=new ClassUnitGenerator();
-		for(String className:classNames)
-			diagram.addToDiagram(unitGenerator.generateInterfaceClassFormat(className,Arrays.asList(methods),Arrays.asList(variables)));
-
+		for(String className:classNames) {
+			unitGenerator.setClassAttributes(className, Arrays.asList(methods), Arrays.asList(variables));
+			diagram.addToDiagram(unitGenerator.generateInterfaceClassFormat());
+		}
 		UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
 		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();

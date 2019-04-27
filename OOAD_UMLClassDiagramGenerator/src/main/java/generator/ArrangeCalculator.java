@@ -30,7 +30,8 @@ public class ArrangeCalculator {
         }
     }
 
-    public void removeUnit(ClassFormat classFormat){
+    public void removeUnit(Point location){
+        ClassFormat classFormat=checkPointContains(location);
         diagram.removeClassFormat(classFormat);
     }
 
@@ -75,10 +76,8 @@ public class ArrangeCalculator {
         Iterator<Map.Entry<String,ClassFormat>> classFormatIterator=diagram.createClassFormatIterator();
         while (classFormatIterator.hasNext()){
             ClassFormat classFormat=classFormatIterator.next().getValue();
-            if(classFormat.contains(start)) {
+            if(classFormat.contains(start))
                 startClass = classFormat;
-                System.out.println("start:" + startClass.getClassName());
-            }
         }
         if(startClass!=null) {
             int offsetX = end.x - start.x, offsetY = end.y - start.y;

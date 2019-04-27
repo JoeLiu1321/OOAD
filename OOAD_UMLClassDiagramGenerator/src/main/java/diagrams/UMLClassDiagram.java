@@ -72,12 +72,20 @@ public class UMLClassDiagram extends Observable{
 	public ClassFormat getClassFormat(String className)throws Exception{
 		if(!classFormatCollection.containsKey(className))
 			throw new Exception("The class '"+className+"' is not in the diagram");
-		return classFormatCollection.get(className);
+		else
+			return classFormatCollection.get(className);
 	}
 
 	public void removeClassFormat(ClassFormat classFormat){
 		if(classFormat!=null && classFormatCollection.containsKey(classFormat.getClassName())) {
 			classFormatCollection.remove(classFormat.getClassName());
+			notifyObservers();
+		}
+	}
+
+	public void removeRelation(Relation relation){
+		if(relation!=null && relations.contains(relation)){
+			relations.remove(relation);
 			notifyObservers();
 		}
 	}

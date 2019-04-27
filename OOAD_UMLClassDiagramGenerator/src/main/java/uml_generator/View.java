@@ -1,29 +1,21 @@
 package uml_generator;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
-import ClassDetailInfo.ClassDetailInfo;
-import ClassDetailInfo.ClassMemberAbstract;
-import ClassDetailInfo.ClassRelarionship;
-import ClassDetailInfo.MemberFunction;
-import ClassDetailInfo.MemberVariable;
+import ClassDetailInfo.*;
 import adapter.ClassDetailInfoDTO;
 import diagrams.UMLClassDiagram;
 import diagrams.UMLClassDiagramDrawer;
@@ -33,23 +25,18 @@ import listeners.Listener;
 import listeners.ListenerHandler;
 import shapes.ClassFormat;
 import viewTool.Tool;
-
 public class View {
 	private JTextField textName;
 	private JTable variableTable;
 	private Map<String,ClassDetailInfo> variableList = new TreeMap<>();
 	private ClassMemberAbstract memberVariable = new MemberVariable();
 	private ClassMemberAbstract memberFunction = new MemberFunction();
-	private ClassMemberAbstract relationship = new ClassRelarionship();
+	private ClassMemberAbstract relationship = new ClassRelationship();
 	private JTable functionTable;
 	private JTable relationshipTable;
     private Tool tool = new Tool();
     private int counter = 1;
     private ClassDetailInfo gp = new ClassDetailInfo();
-	public Map<String,ClassDetailInfo> getVariableList()
-	{
-		return variableList;
-	}
 	UMLClassDiagram diagram;
 	ClassUnitGenerator unitGenerator;
 	UMLClassDiagramDrawer drawer;
@@ -395,7 +382,8 @@ public class View {
 					counter++;
 				}
 				ClassDetailInfoDTO dto=new ClassDetailInfoDTO(gp);
-				ClassFormat classFormat=unitGenerator.generateConcreteClassFormat(dto);
+				unitGenerator.setClassAttributes(dto);
+				ClassFormat classFormat=unitGenerator.generateConcreteClassFormat();
 				diagram.addToDiagram(classFormat);
 				// 這邊你要把gp(單一個classinfo)拿走!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				

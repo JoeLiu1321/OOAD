@@ -30,9 +30,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Component;
 public class UmlGUI extends JFrame {
-
 	private JPanel contentPane;
-	private ClassDetailInfo gp = new ClassDetailInfo();
 	/**
 	 * Launch the application.
 	 */

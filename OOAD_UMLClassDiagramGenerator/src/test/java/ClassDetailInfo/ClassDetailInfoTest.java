@@ -1,15 +1,9 @@
-package UnitTest;
+package ClassDetailInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import ClassDetailInfo.ClassDetailInfo;
-import ClassDetailInfo.ClassMemberAbstract;
-import ClassDetailInfo.ClassRelarionship;
-import ClassDetailInfo.MemberFunction;
-import ClassDetailInfo.MemberVariable;
 
 class ClassDetailInfoTest {
     private ClassDetailInfo classDetailInfo;
@@ -20,7 +14,7 @@ class ClassDetailInfoTest {
 	void setUp() throws Exception {
 		memberVariable = new MemberVariable("Public", "int","GP");
 		memberFunction = new MemberFunction("Public","int","draw(int x, int y)");
-		relation = new ClassRelarionship("Extension","Draw");
+		relation = new ClassRelationship("Extension","Draw");
 		classDetailInfo = new ClassDetailInfo();
 		classDetailInfo.setClassName("UML Generator");
 		classDetailInfo.setMemberVariable(memberVariable);

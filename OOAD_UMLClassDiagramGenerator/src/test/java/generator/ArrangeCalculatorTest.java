@@ -25,10 +25,7 @@ public class ArrangeCalculatorTest {
 
     @Test
     public void moveUnit() {
-        UMLClassDiagram d1=new UMLClassDiagram(500,500);
-        UMLClassDiagram d2=new UMLClassDiagram(500,500);
-        assertEquals(d1==d2,false);
-        assertEquals(d1==d1,true);
+
     }
 
     @Test
@@ -64,16 +61,8 @@ public class ArrangeCalculatorTest {
         Point2D slopeAndOffset=arrangeCalculator.solveEquation(start,end);
 
         List<Point2D>startClassResult=arrangeCalculator.getPossibleSolution(slopeAndOffset,startClass);
-        for(Point2D p:startClassResult)
-            System.out.println("start : "+p);
-//        assertEquals(startClass.contains(startClassResult.get(0)),true);
-//        assertEquals(startClass.contains(startClassResult.get(1)),true);
-
-        List<Point2D>endClassResult=arrangeCalculator.getPossibleSolution(slopeAndOffset,endClass);
-        for (Point2D p:endClassResult)
-            System.out.println("end : "+p);
-//        assertEquals(true,endClass.contains(endClassResult.get(0)));
-//        assertEquals(true,endClass.contains(endClassResult.get(1)));
+        assertEquals(new Point2D.Double(10.0,-56.666666666666664),startClassResult.get(0));
+        assertEquals(new Point2D.Double(38.57142857142857,10.0),startClassResult.get(1));
     }
 
     @Test
@@ -89,23 +78,17 @@ public class ArrangeCalculatorTest {
 
         List<Point2D>startClassResult=arrangeCalculator.getPossibleSolution(slopeAndOffset,startClass);
         startClassResult=arrangeCalculator.getRecContainsPoint(startClassResult,startClass);
-        for(Point2D p:startClassResult)
-            System.out.println("start : "+p);
-        assertEquals(startClass.contains(startClassResult.get(0)),true);
-//        assertEquals(startClass.contains(startClassResult.get(1)),true);
+        assertEquals(true,startClass.contains(startClassResult.get(0)));
+        assertEquals(true,startClass.contains(startClassResult.get(1)));
 
         List<Point2D>endClassResult=arrangeCalculator.getPossibleSolution(slopeAndOffset,endClass);
         endClassResult=arrangeCalculator.getRecContainsPoint(endClassResult,endClass);
-        for (Point2D p:endClassResult)
-            System.out.println("end : "+p);
         assertEquals(true,endClass.contains(endClassResult.get(0)));
         assertEquals(true,endClass.contains(endClassResult.get(1)));
-
-
     }
 
     @Test
-    public void getMinStartEndPoint(){
+    public void getMinStartEndPoint()throws Exception{
         UMLClassDiagram classDiagram=new UMLClassDiagram(500,500);
         ArrangeCalculator arrangeCalculator=new ArrangeCalculator(classDiagram);
         List<Point2D> start=new ArrayList<>();
@@ -114,12 +97,9 @@ public class ArrangeCalculatorTest {
         start.add(new Point(95,110));
         end.add(new Point(255,430));
         end.add(new Point(290,500));
-        try {
-            List<Point2D> result = arrangeCalculator.getMinStartEndPoint(start, end);
-            assertEquals(new Point(95,110),result.get(0));
-            assertEquals(new Point(255,430),result.get(1));
-        }catch (Exception e){
+        List<Point2D> result = arrangeCalculator.getMinStartEndPoint(start, end);
 
-        }
+        assertEquals(new Point(95,110),result.get(0));
+        assertEquals(new Point(255,430),result.get(1));
     }
 }

@@ -4,13 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-
-import ClassDetailInfo.ClassDetailInfo;
-import ClassDetailInfo.ClassMemberAbstract;
-import ClassDetailInfo.ClassRelarionship;
-import ClassDetailInfo.MemberFunction;
-import ClassDetailInfo.MemberVariable;
-
+import ClassDetailInfo.*;
 public class Tool {
 	public Tool() {}
 	public void clearTableValue(JTable temp)
@@ -51,7 +45,7 @@ public class Tool {
 		}
 		
 		if ( ! _gp.getClassRelarionship().isEmpty() ) 
-			_textShowDetail.append("ClassRelarionship : " +"\n");
+			_textShowDetail.append("ClassRelationship : " +"\n");
 		for ( ClassMemberAbstract temp : _gp.getClassRelarionship())
 		{
 			String ans = temp.getReference()+ " " + temp.getName() + "\n";
@@ -61,7 +55,7 @@ public class Tool {
 	
 	public ArrayList<ClassMemberAbstract> getTableValue(JTable temp,ClassMemberAbstract member,String choice)
 	{
-		//­n§ï
+		//ï¿½nï¿½ï¿½
 		
 		ArrayList<ClassMemberAbstract> result =new ArrayList<ClassMemberAbstract>();
 		int row = temp.getModel().getRowCount();
@@ -69,9 +63,9 @@ public class Tool {
 		Object selected=null;
 		for (int i=0; i < row; i++)
 		{
-		  if ( choice == "Variable" ) member = new MemberVariable(); // ¤T­Ó«¬§O¦@¥Îfunction
+		  if ( choice == "Variable" ) member = new MemberVariable(); // ï¿½Tï¿½Ó«ï¿½ï¿½Oï¿½@ï¿½ï¿½function
 		  else if ( choice == "Function") member = new MemberFunction();
-		  else if ( choice == "Relation" ) member = new ClassRelarionship();
+		  else if ( choice == "Relation" ) member = new ClassRelationship();
 		  else return null;
 		  
 		  for (int j=0; j < column; j++)
@@ -80,7 +74,7 @@ public class Tool {
 		    if ( selected != "" && selected != null )
 		    {
 		      if ( j == 0 ) member.setReference(selected.toString());
-			  else if ( j == 1 && temp.getColumnName(j) != "Class Name"  ) member.setType(selected.toString()); // Class Name¤£¬O©I¥ssetType
+			  else if ( j == 1 && temp.getColumnName(j) != "Class Name"  ) member.setType(selected.toString()); // Class Nameï¿½ï¿½ï¿½Oï¿½Iï¿½ssetType
 			  else member.setName(selected.toString());
 		    }	    
 		  }	  
