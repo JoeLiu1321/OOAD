@@ -10,15 +10,15 @@ public class ListenerHandler {
     }
 
     public void executeAddRelation(Point start, Point end){
-        arrangeCalculator.calculateArrange(start,end);
+        arrangeCalculator.bindRelation(start,end);
     }
 
     public void executeMoveUnit(Point start , Point end){
         arrangeCalculator.moveUnit(start,end);
     }
 
-    public void executeRemoveUnit(Point start){
-        arrangeCalculator.removeUnit(start);
+    public void executeRemoveUnit(Point location){
+        arrangeCalculator.removeUnit(location);
     }
 
 }

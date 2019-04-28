@@ -36,7 +36,7 @@ public class View {
 	private JTable relationshipTable;
     private Tool tool = new Tool();
     private int counter = 1;
-    private ClassDetailInfo gp = new ClassDetailInfo();
+    private ClassDetailInfo classDetailInfo = new ClassDetailInfo();
 	UMLClassDiagram diagram;
 	ClassUnitGenerator unitGenerator;
 	UMLClassDiagramDrawer drawer;
@@ -58,13 +58,12 @@ public class View {
 		JRadioButton removeRelation=new JRadioButton("Remove Relation");
 		JRadioButton removeUnit=new JRadioButton("Remove Unit");
 		moveUnit.addItemListener(listener.moveUnit);
-
 		addRelation.addItemListener(listener.addRelation);
 		removeRelation.addItemListener(v->{System.out.println("remove");});
 		removeUnit.addItemListener(listener.removeUnit);
-		moveUnit.setBounds(x-400,0,100,50);
-		addRelation.setBounds(x-300,0,100,50);
-		removeRelation.setBounds(x-200,0,100,50);
+		moveUnit.setBounds(x-450,0,100,50);
+		addRelation.setBounds(x-350,0,100,50);
+		removeRelation.setBounds(x-250,0,150,50);
 		removeUnit.setBounds(x-100,0,100,50);
 		group.add(moveUnit);
 		group.add(addRelation);
@@ -313,10 +312,10 @@ public class View {
 		btnReadName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {			
 				if ( textName.getText() != null && !textName.getText().equals(""))
-					gp.setClassName(textName.getText());
+					classDetailInfo.setClassName(textName.getText());
 				else
-					gp.setClassName("");
-				tool.showOnTextArea(textShowDetail, gp);
+					classDetailInfo.setClassName("");
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 				
 			}
 		});
@@ -333,15 +332,15 @@ public class View {
 		btnReadVariable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<ClassMemberAbstract> member = tool.getTableValue(variableTable,memberVariable,"Variable");
-				gp.clearMemberVariable();
+				classDetailInfo.clearMemberVariable();
 				for ( int i=0; i < member.size();i++)
 				{
-					gp.setMemberVariable(member.get(i));
+					classDetailInfo.setMemberVariable(member.get(i));
 					String ans = member.get(i).getReference()+ " " + member.get(i).getType() + " " + member.get(i).getName() ;
 					textShowDetail.append(ans);
 				}
-				variableList.put(gp.getClassName(), gp);
-				tool.showOnTextArea(textShowDetail, gp);
+				variableList.put(classDetailInfo.getClassName(), classDetailInfo);
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		
@@ -352,24 +351,24 @@ public class View {
 		btnReadRelationship.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		      ArrayList<ClassMemberAbstract> member = tool.getTableValue(relationshipTable,relationship,"Relation");
-			  gp.clearClassRelarionship();
+			  classDetailInfo.clearClassRelarionship();
 			  for ( int i=0; i < member.size();i++)
 			  {
-			    gp.setClassRelarionship(member.get(i));
+			    classDetailInfo.setClassRelarionship(member.get(i));
 			    String ans = member.get(i).getReference()+ " " + member.get(i).getName() ;
 				textShowDetail.append(ans);
 			  }
-			  variableList.put(gp.getClassName(), gp);
-			  tool.showOnTextArea(textShowDetail, gp);
+			  variableList.put(classDetailInfo.getClassName(), classDetailInfo);
+			  tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		btnReadRelationship.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnReadRelationship.setBounds(1137, 692, 168, 47);
 		Input.add(btnReadRelationship);
 		
-		JButton btnDrawSketch = new JButton("Draw Sketch \u2192");
+		JButton btnShowSketch = new JButton("Show Sketch \u2192");
 		// Draw Sketch Button
-		btnDrawSketch.addActionListener(new ActionListener() {
+		btnShowSketch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textName.setText("");
 				tool.clearTableValue(variableTable);
@@ -377,11 +376,11 @@ public class View {
 				tool.clearTableValue(relationshipTable);
 				textShowDetail.setText("");
 				tabbedPane.setSelectedComponent(drawer);
-				if (gp.getClassName().equals("")){
-					gp.setClassName("NewClass"+counter);
+				if (classDetailInfo.getClassName().equals("")){
+					classDetailInfo.setClassName("NewClass"+counter);
 					counter++;
 				}
-				ClassDetailInfoDTO dto=new ClassDetailInfoDTO(gp);
+				ClassDetailInfoDTO dto=new ClassDetailInfoDTO(classDetailInfo);
 				unitGenerator.setClassAttributes(dto);
 				ClassFormat classFormat=unitGenerator.generateConcreteClassFormat();
 				diagram.addToDiagram(classFormat);
@@ -389,9 +388,9 @@ public class View {
 				
 			}
 		});
-		btnDrawSketch.setFont(new Font("Arial", Font.PLAIN, 26));
-		btnDrawSketch.setBounds(1484, 772, 399, 39);
-		Input.add(btnDrawSketch);
+		btnShowSketch.setFont(new Font("Arial", Font.PLAIN, 26));
+		btnShowSketch.setBounds(1484, 772, 399, 39);
+		Input.add(btnShowSketch);
 		
 		JButton btnClearVariable = new JButton("Clear Variable");
 		// Clear Variable Button
@@ -400,8 +399,8 @@ public class View {
 			public void actionPerformed(ActionEvent e) {
 				
 				tool.clearTableValue(variableTable);
-				gp.clearMemberVariable();
-				tool.showOnTextArea(textShowDetail, gp);
+				classDetailInfo.clearMemberVariable();
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		
@@ -413,15 +412,15 @@ public class View {
 		btnReadFunction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<ClassMemberAbstract> member = tool.getTableValue(functionTable,memberFunction,"Function");
-				gp.clearMemberFunction();
+				classDetailInfo.clearMemberFunction();
 				for ( int i=0; i < member.size();i++)
 				{
-					gp.setMemberFunction(member.get(i));
+					classDetailInfo.setMemberFunction(member.get(i));
 					String ans = member.get(i).getReference()+ " " + member.get(i).getType() + " " + member.get(i).getName() ;
 					textShowDetail.append(ans);
 				}
-				variableList.put(gp.getClassName(), gp);
-				tool.showOnTextArea(textShowDetail, gp);
+				variableList.put(classDetailInfo.getClassName(), classDetailInfo);
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
                  
 			}
 		});
@@ -437,8 +436,8 @@ public class View {
 		btnClearFunction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tool.clearTableValue(functionTable);
-				gp.clearMemberFunction();
-				tool.showOnTextArea(textShowDetail, gp);
+				classDetailInfo.clearMemberFunction();
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		btnClearFunction.setFont(new Font("Arial", Font.PLAIN, 26));
@@ -451,8 +450,8 @@ public class View {
 		btnClearRelationship.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tool.clearTableValue(relationshipTable);
-				gp.clearClassRelarionship();
-				tool.showOnTextArea(textShowDetail, gp);
+				classDetailInfo.clearClassRelarionship();
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		btnClearRelationship.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -471,8 +470,8 @@ public class View {
 			public void actionPerformed(ActionEvent e) {
 				textName.setText(null);
 				textShowDetail.setText("");
-				gp.clearClassName();
-				tool.showOnTextArea(textShowDetail, gp);
+				classDetailInfo.clearClassName();
+				tool.showOnTextArea(textShowDetail, classDetailInfo);
 			}
 		});
 		

@@ -46,28 +46,30 @@ public class ArrangeCalculator {
         return containClass;
     }
 
-    public void calculateArrange(Point start,Point end){
+    public void linkTwoUnitWithMinDistance(Point start,Point end,ClassFormat startClass,ClassFormat endClass,Relation relation){
+        Point2D equation=solveEquation(start,end);
+        List<Point2D>startClassResult=getPossibleSolution(equation,startClass);
+        startClassResult=getRecContainsPoint(startClassResult,startClass);
+        List<Point2D>endClassResult=getPossibleSolution(equation,endClass);
+        endClassResult=getRecContainsPoint(endClassResult,endClass);
+        try {
+            List<Point2D> result = getMinStartEndPoint(startClassResult, endClassResult);
+            Point2D startPoint = result.get(0), endPoint = result.get(1);
+            relation.setStartX((int) startPoint.getX());
+            relation.setStartY((int) startPoint.getY());
+            relation.setEndX((int) endPoint.getX());
+            relation.setEndY((int) endPoint.getY());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void bindRelation(Point start, Point end){
         ClassFormat startClass=checkPointContains(start),endClass=checkPointContains(end);
         if(startClass !=null && endClass!=null){
             ClassRelationGenerator relationGenerator=new ClassRelationGenerator();
             Relation relation=relationGenerator.generateRelation(startClass,endClass, RelationType.Association);
-            Point2D equation=solveEquation(start,end);
-            List<Point2D>startClassResult=getPossibleSolution(equation,startClass);
-            startClassResult=getRecContainsPoint(startClassResult,startClass);
-            List<Point2D>endClassResult=getPossibleSolution(equation,endClass);
-            endClassResult=getRecContainsPoint(endClassResult,endClass);
-            try {
-                List<Point2D>result=getMinStartEndPoint(startClassResult,endClassResult);
-                Point2D startPoint=result.get(0),endPoint=result.get(1);
-                relation.setStartX((int)startPoint.getX());
-                relation.setStartY((int)startPoint.getY());
-                relation.setEndX((int)endPoint.getX());
-                relation.setEndY((int)endPoint.getY());
-                diagram.addToDiagram(relation);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
+            linkTwoUnitWithMinDistance(start,end,startClass,endClass,relation);
+            diagram.addToDiagram(relation);
         }
     }
 
