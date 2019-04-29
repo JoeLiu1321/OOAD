@@ -384,8 +384,7 @@ public class View {
 				unitGenerator.setClassAttributes(dto);
 				ClassFormat classFormat=unitGenerator.generateConcreteClassFormat();
 				diagram.addToDiagram(classFormat);
-				// 這邊你要把gp(單一個classinfo)拿走!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				
+				classDetailInfo = new  ClassDetailInfo();
 			}
 		});
 		btnShowSketch.setFont(new Font("Arial", Font.PLAIN, 26));
