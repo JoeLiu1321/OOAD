@@ -4,6 +4,8 @@ import diagrams.RelationType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -87,4 +89,13 @@ public class RelationTest {
         assertEquals(relationType,relation.getRelationType());
     }
 
+    @Test
+    public void contains(){
+        relation.setStartX(0);
+        relation.setEndX(100);
+        relation.setStartY(0);
+        relation.setEndY(100);
+        assertEquals(true,relation.contains(new Point(50,70)));
+        assertEquals(false,relation.contains(new Point(101,70)));
+    }
 }

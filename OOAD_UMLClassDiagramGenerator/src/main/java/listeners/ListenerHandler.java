@@ -21,4 +21,7 @@ public class ListenerHandler {
         arrangeCalculator.removeUnit(location);
     }
 
+    public void executeRemoveRelation(Point location){
+        arrangeCalculator.removeRelation(location);
+    }
 }

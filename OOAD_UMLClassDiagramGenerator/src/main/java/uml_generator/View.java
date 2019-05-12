@@ -1,9 +1,6 @@
 package uml_generator;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -57,10 +54,13 @@ public class View {
 		JRadioButton addRelation=new JRadioButton("Add Relation");
 		JRadioButton removeRelation=new JRadioButton("Remove Relation");
 		JRadioButton removeUnit=new JRadioButton("Remove Unit");
+		JButton saveButton=new JButton("Save");
+		saveButton.addActionListener(listener.saveListener);
 		moveUnit.addItemListener(listener.moveUnit);
 		addRelation.addItemListener(listener.addRelation);
-		removeRelation.addItemListener(v->{System.out.println("remove");});
+		removeRelation.addItemListener(listener.removeRelation);
 		removeUnit.addItemListener(listener.removeUnit);
+		saveButton.setBounds(x-100,50,75,30);
 		moveUnit.setBounds(x-450,0,100,50);
 		addRelation.setBounds(x-350,0,100,50);
 		removeRelation.setBounds(x-250,0,150,50);
@@ -69,7 +69,7 @@ public class View {
 		group.add(addRelation);
 		group.add(removeRelation);
 		group.add(removeUnit);
-
+		drawer.add(saveButton);
 		drawer.add(moveUnit);
 		drawer.add(addRelation);
 		drawer.add(removeRelation);

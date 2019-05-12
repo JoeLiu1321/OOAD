@@ -30,6 +30,27 @@ public class ArrangeCalculator {
         }
     }
 
+    public void removeRelation(Point location){
+        int difference=5;
+        Iterator<Relation>relationIterator=diagram.createRelationIterator();
+        List<Relation> possibleRelations=new ArrayList<>();
+        while(relationIterator.hasNext()){
+            Relation relation=relationIterator.next();
+            if(relation.contains(location))
+                possibleRelations.add(relation);
+        }
+        if(!possibleRelations.isEmpty()){
+            for(Relation relation:possibleRelations){
+                Point2D result=solveEquation(new Point(relation.getStartX(),relation.getStartY()),new Point(relation.getEndX(),relation.getEndY()));
+                int expectY=(int)(result.getX()*location.x+result.getY());
+                if(expectY-difference<=location.y && location.y<=expectY+difference){
+                    diagram.removeRelation(relation);
+                    break;
+                }
+            }
+        }
+    }
+
     public void removeUnit(Point location){
         ClassFormat classFormat=checkPointContains(location);
         diagram.removeClassFormat(classFormat);

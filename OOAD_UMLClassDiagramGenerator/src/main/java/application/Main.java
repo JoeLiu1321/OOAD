@@ -1,5 +1,6 @@
 package application;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import javax.swing.*;
 import diagrams.UMLClassDiagram;
@@ -29,7 +30,11 @@ public class Main{
 		arrangeCalculator.arrange();
 		ListenerHandler listenerHandler=new ListenerHandler(arrangeCalculator);
 		Listener listener=new Listener(drawer,listenerHandler);
-		JPanel checkBoxGroup=getCheckBoxGroup(listener);
+		JPanel checkBoxGroup= setUpButtonGroup(listener);
+		JButton saveButton=new JButton("Save");
+		saveButton.setLocation(new Point(width-100,height-100));
+		saveButton.addActionListener(listener.saveListener);
+		drawer.add(saveButton);
 		JFrame frame=new JFrame("test Panel");
 	    frame.setSize(width,height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +44,7 @@ public class Main{
 	    frame.setVisible(true);
 
 	}
-	public static JPanel getCheckBoxGroup(Listener listener){
+	public static JPanel setUpButtonGroup(Listener listener){
 		JPanel panel=new JPanel();
 		ButtonGroup group=new ButtonGroup();
 		JRadioButton moveUnit=new JRadioButton("Move Unit");
@@ -47,9 +52,8 @@ public class Main{
 		JRadioButton removeRelation=new JRadioButton("Remove Relation");
 		JRadioButton removeUnit=new JRadioButton("Remove Unit");
 		moveUnit.addItemListener(listener.moveUnit);
-
+		removeRelation.addItemListener(listener.removeRelation);
 		addRelation.addItemListener(listener.addRelation);
-		removeRelation.addItemListener(v->{System.out.println("remove");});
 		removeUnit.addItemListener(listener.removeUnit);
 		group.add(moveUnit);
 		group.add(addRelation);

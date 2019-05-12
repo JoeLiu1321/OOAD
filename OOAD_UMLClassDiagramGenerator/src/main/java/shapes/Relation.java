@@ -79,6 +79,12 @@ public class Relation implements Drawable{
         this.relationType = relationType;
     }
 
+    public boolean contains(Point location){
+        boolean isXContain=(Integer.max(startX,endX)>=location.x && location.x>=Integer.min(startX,endX));
+        boolean isYContain=(Integer.max(startY,endY)>=location.y && location.y>=Integer.min(startY,endY));
+        return isXContain && isYContain;
+    }
+
     @Override
     public void draw(Graphics g) {
         g.drawString(relationType.toString(),(startX+endX)/2,(startY+endY)/2);

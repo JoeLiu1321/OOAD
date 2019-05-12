@@ -1,8 +1,14 @@
 package listeners;
 
+import com.sun.javafx.iio.ImageStorage;
 import diagrams.UMLClassDiagramDrawer;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Listener {
     UMLClassDiagramDrawer drawer;
@@ -14,6 +20,19 @@ public class Listener {
         start=new Point(0,0);
         end=new Point(0,0);
     }
+
+    public ActionListener saveListener=new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            BufferedImage bufferedImage=new BufferedImage(drawer.getWidth(),drawer.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+            Graphics2D g=bufferedImage.createGraphics();
+            drawer.print(g);
+            try{
+                ImageIO.write(bufferedImage,"png",new File(System.getProperty("user.dir")+"/testPng.png"));
+            }catch (IOException exception){
+                exception.printStackTrace();}
+        }
+    };
 
     public ItemListener addRelation=new ItemListener() {
         @Override
@@ -74,6 +93,7 @@ public class Listener {
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
+            listenerHandler.executeRemoveRelation(e.getPoint());
         }
 
         @Override
