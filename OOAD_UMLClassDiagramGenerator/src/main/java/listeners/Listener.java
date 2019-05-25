@@ -21,7 +21,14 @@ public class Listener {
         end=new Point(0,0);
     }
 
-    public ActionListener saveListener=new ActionListener() {
+    public ActionListener saveListener=new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    };
+
+    public ActionListener outputListener =new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             BufferedImage bufferedImage=new BufferedImage(drawer.getWidth(),drawer.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);

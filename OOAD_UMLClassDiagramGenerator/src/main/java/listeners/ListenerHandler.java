@@ -1,12 +1,15 @@
 package listeners;
 
+import diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
 import java.awt.*;
 
 public class ListenerHandler {
+    private UMLClassDiagram diagram;
     private ArrangeCalculator arrangeCalculator;
-    public ListenerHandler(ArrangeCalculator arrangeCalculator){
-        this.arrangeCalculator=arrangeCalculator;
+    public ListenerHandler(UMLClassDiagram diagram){
+        this.diagram=diagram;
+        arrangeCalculator=new ArrangeCalculator(diagram);
     }
 
     public void executeAddRelation(Point start, Point end){
@@ -23,5 +26,9 @@ public class ListenerHandler {
 
     public void executeRemoveRelation(Point location){
         arrangeCalculator.removeRelation(location);
+    }
+
+    public void executeSaveDiagram(){
+
     }
 }

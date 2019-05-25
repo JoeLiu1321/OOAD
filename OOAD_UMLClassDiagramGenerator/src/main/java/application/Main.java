@@ -1,6 +1,5 @@
 package application;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import javax.swing.*;
 import diagrams.UMLClassDiagram;
@@ -28,12 +27,12 @@ public class Main{
 		UMLClassDiagramDrawer drawer=new UMLClassDiagramDrawer(diagram);
 		ArrangeCalculator arrangeCalculator =new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();
-		ListenerHandler listenerHandler=new ListenerHandler(arrangeCalculator);
+		ListenerHandler listenerHandler=new ListenerHandler(diagram);
 		Listener listener=new Listener(drawer,listenerHandler);
 		JPanel checkBoxGroup= setUpButtonGroup(listener);
-		JButton saveButton=new JButton("Save");
+		JButton saveButton=new JButton("DiagramWriter");
 		saveButton.setLocation(new Point(width-100,height-100));
-		saveButton.addActionListener(listener.saveListener);
+		saveButton.addActionListener(listener.outputListener);
 		drawer.add(saveButton);
 		JFrame frame=new JFrame("test Panel");
 	    frame.setSize(width,height);

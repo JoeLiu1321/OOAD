@@ -47,15 +47,15 @@ public class View {
 		drawer=new UMLClassDiagramDrawer(diagram);
 		arrangeCalculator =new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();
-		listenerHandler=new ListenerHandler(arrangeCalculator);
+		listenerHandler=new ListenerHandler(diagram);
 		listener=new Listener(drawer,listenerHandler);
 		ButtonGroup group=new ButtonGroup();
 		JRadioButton moveUnit=new JRadioButton("Move Unit");
 		JRadioButton addRelation=new JRadioButton("Add Relation");
 		JRadioButton removeRelation=new JRadioButton("Remove Relation");
 		JRadioButton removeUnit=new JRadioButton("Remove Unit");
-		JButton saveButton=new JButton("Save");
-		saveButton.addActionListener(listener.saveListener);
+		JButton saveButton=new JButton("DiagramWriter");
+		saveButton.addActionListener(listener.outputListener);
 		moveUnit.addItemListener(listener.moveUnit);
 		addRelation.addItemListener(listener.addRelation);
 		removeRelation.addItemListener(listener.removeRelation);
