@@ -38,7 +38,6 @@ public class DiagramWriter {
             }
         }catch (IOException exception){
             System.out.println("Invalid path");
-
         }
         finally {
             fw.close();
