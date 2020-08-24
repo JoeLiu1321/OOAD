@@ -1,14 +1,15 @@
 package ClassDetailInfo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-class MemberVariableTest {
+public class MemberVariableTest {
 	private ClassMemberAbstract memberVariable;
-	@BeforeEach
-	void setUp() throws Exception {
+
+	@Before
+	public void setUp() throws Exception {
 		memberVariable = new MemberVariable();
 		memberVariable.setReference("Public");
 		memberVariable.setType("int");
@@ -16,7 +17,7 @@ class MemberVariableTest {
 	}
 
 	@Test
-	void testReSet() {
+	public void testReSet() {
 		memberVariable.reSet();
 		assertEquals("", memberVariable.getReference());
 		assertEquals("", memberVariable.getType());
@@ -24,17 +25,17 @@ class MemberVariableTest {
 	}
 
 	@Test
-	void testGetReference() {
+	public void testGetReference() {
 		assertEquals("Public", memberVariable.getReference());
 	}
 
 	@Test
-	void testGetType() {
+	public void testGetType() {
 		assertEquals("int", memberVariable.getType());
 	}
 
 	@Test
-	void testGetName() {
+	public void testGetName() {
 		assertEquals("GP", memberVariable.getName());
 	}
 

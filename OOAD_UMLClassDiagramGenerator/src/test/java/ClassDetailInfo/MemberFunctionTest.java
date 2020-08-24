@@ -1,24 +1,24 @@
 package ClassDetailInfo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+public class MemberFunctionTest {
 
-class MemberFunctionTest {
-    
 	private ClassMemberAbstract memberFunction;
-	@BeforeEach
-	void setUp() throws Exception {
+
+	@Before
+	public void setUp() throws Exception {
 		memberFunction = new MemberFunction();
 		memberFunction.setReference("Public");
 		memberFunction.setType("int");
 		memberFunction.setName("draw(int x, int y)");
-		
+
 	}
 
 	@Test
-	void testReSet() {
+	public void testReSet() {
 		memberFunction.reSet();
 		assertEquals("", memberFunction.getReference());
 		assertEquals("", memberFunction.getType());
@@ -26,17 +26,17 @@ class MemberFunctionTest {
 	}
 
 	@Test
-	void testGetReference() {
+	public void testGetReference() {
 		assertEquals("Public", memberFunction.getReference());
 	}
 
 	@Test
-	void testGetType() {
+	public void testGetType() {
 		assertEquals("int", memberFunction.getType());
 	}
 
 	@Test
-	void testGetName() {
+	public void testGetName() {
 		assertEquals("draw(int x, int y)", memberFunction.getName());
 	}
 

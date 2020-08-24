@@ -1,1 +1,10 @@
 /.gradle/
+*.class
+*.project
+*.diagram
+gradle
+OOAD_UMLClassDiagramGenerator/gradlew.bat
+OOAD_UMLClassDiagramGenerator/.settings/org.eclipse.buildship.core.prefs
+OOAD_UMLClassDiagramGenerator/gradlew
+OOAD_UMLClassDiagramGenerator/settings.gradle
+OOAD_UMLClassDiagramGenerator/.vscode/settings.json
