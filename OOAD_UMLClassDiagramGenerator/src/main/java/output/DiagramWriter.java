@@ -2,9 +2,9 @@ package output;
 
 import adapter.ClassFormatOutputDTO;
 import adapter.RelationOutputDTO;
-import diagrams.UMLClassDiagram;
-import shapes.ClassFormat;
-import shapes.Relation;
+import model.diagrams.UMLClassDiagram;
+import model.shapes.ClassFormat;
+import model.shapes.Relation;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -14,35 +14,34 @@ import java.util.Map;
 
 public class DiagramWriter {
     private UMLClassDiagram diagram;
-    public DiagramWriter(UMLClassDiagram diagram){
-        this.diagram=diagram;
+
+    public DiagramWriter(UMLClassDiagram diagram) {
+        this.diagram = diagram;
     }
 
-    public void save(String path)throws IOException{
-        FileWriter fw=null;
+    public void save(String path) throws IOException {
+        FileWriter fw = null;
         try {
             fw = new FileWriter(new File(path));
-            Iterator<Map.Entry<String, ClassFormat>> classFormatIterator=diagram.createClassFormatIterator();
-            Iterator<Relation> relationIterator=diagram.createRelationIterator();
-            while (classFormatIterator.hasNext()){
-                ClassFormat classFormat=classFormatIterator.next().getValue();
-                ClassFormatOutputDTO  classFormatOutputDTO=new ClassFormatOutputDTO(classFormat);
+            Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+            Iterator<Relation> relationIterator = diagram.createRelationIterator();
+            while (classFormatIterator.hasNext()) {
+                ClassFormat classFormat = classFormatIterator.next().getValue();
+                ClassFormatOutputDTO classFormatOutputDTO = new ClassFormatOutputDTO(classFormat);
                 fw.write(classFormatOutputDTO.getOutput());
                 fw.write("\r\n");
             }
-            while(relationIterator.hasNext()) {
+            while (relationIterator.hasNext()) {
                 Relation relation = relationIterator.next();
                 RelationOutputDTO relationOutputDTO = new RelationOutputDTO(relation);
                 fw.write(relationOutputDTO.getOutput());
                 fw.write("\r\n");
             }
-        }catch (IOException exception){
+        } catch (IOException exception) {
             System.out.println("Invalid path");
-        }
-        finally {
+        } finally {
             fw.close();
         }
     }
-
 
 }

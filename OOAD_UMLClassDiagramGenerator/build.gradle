@@ -26,6 +26,6 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'src.main.application.Main'
+    mainClassName = 'application.Main'
     compileJava.options.encoding = 'UTF-8'
 }

@@ -1,10 +1,10 @@
 package generator;
 
-import ClassDetailInfo.*;
+import model.ClassDetailInfo.*;
 import adapter.ClassDetailInfoDTO;
 import org.junit.Before;
 import org.junit.Test;
-import shapes.ClassFormat;
+import model.shapes.ClassFormat;
 import java.util.Arrays;
 import static org.junit.Assert.*;
 

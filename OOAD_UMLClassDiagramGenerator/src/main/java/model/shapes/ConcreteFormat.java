@@ -1,4 +1,4 @@
-package shapes;
+package model.shapes;
 
 public class ConcreteFormat extends ClassFormat {
 	public ConcreteFormat(String className, int x, int y, int width, int height) {

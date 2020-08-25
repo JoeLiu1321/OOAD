@@ -1,17 +1,15 @@
-package shapes;
+package model.shapes;
 
-import diagrams.Drawable;
-import diagrams.RelationType;
+import model.diagrams.RelationType;
 
-import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.Point;
 
-public class Relation implements Drawable{
-    private ClassFormat startClass,endClass;
+public class Relation {
+    private ClassFormat startClass, endClass;
     private RelationType relationType;
-    private int startX,endX,startY,endY;
-    public Relation(ClassFormat startClass , ClassFormat endClass , RelationType relationType){
+    private int startX, endX, startY, endY;
+
+    public Relation(ClassFormat startClass, ClassFormat endClass, RelationType relationType) {
         setStartClass(startClass);
         setEndClass(endClass);
         setRelationType(relationType);
@@ -79,29 +77,22 @@ public class Relation implements Drawable{
         this.relationType = relationType;
     }
 
-    public boolean contains(Point location){
-        boolean isXContain=(Integer.max(startX,endX)>=location.x && location.x>=Integer.min(startX,endX));
-        boolean isYContain=(Integer.max(startY,endY)>=location.y && location.y>=Integer.min(startY,endY));
+    public boolean contains(Point location) {
+        boolean isXContain = (Integer.max(startX, endX) >= location.x && location.x >= Integer.min(startX, endX));
+        boolean isYContain = (Integer.max(startY, endY) >= location.y && location.y >= Integer.min(startY, endY));
         return isXContain && isYContain;
     }
 
-    @Override
-    public void draw(Graphics g) {
-        g.drawString(relationType.toString(),(startX+endX)/2,(startY+endY)/2);
-        g.drawLine(startX,startY,endX,endY);
-    }
-
-    public void update(Object location,ClassFormat classFormat) {
-        Point point=(Point)location;
-        if(point!=null){
-            int offsetX=point.x,offsetY=point.y;
-            if(classFormat==startClass){
-               startX+=offsetX;
-               startY+=offsetY;
-            }
-            else{
-                endX+=offsetX;
-                endY+=offsetY;
+    public void update(Object location, ClassFormat classFormat) {
+        Point point = (Point) location;
+        if (point != null) {
+            int offsetX = point.x, offsetY = point.y;
+            if (classFormat == startClass) {
+                startX += offsetX;
+                startY += offsetY;
+            } else {
+                endX += offsetX;
+                endY += offsetY;
             }
         }
 

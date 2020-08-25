@@ -1,7 +1,7 @@
 package listeners;
 
-import diagrams.RelationType;
-import diagrams.UMLClassDiagramDrawer;
+import model.diagrams.RelationType;
+import drawer.UMLClassDiagramDrawer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

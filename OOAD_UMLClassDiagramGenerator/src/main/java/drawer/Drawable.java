@@ -1,4 +1,4 @@
-package diagrams;
+package drawer;
 
 import java.awt.Graphics;
 

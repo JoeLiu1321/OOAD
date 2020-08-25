@@ -1,7 +1,7 @@
 package listeners;
 
-import diagrams.RelationType;
-import diagrams.UMLClassDiagram;
+import model.diagrams.RelationType;
+import model.diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
 import output.DiagramReader;
 import output.DiagramWriter;
@@ -13,50 +13,50 @@ public class ListenerHandler {
     private UMLClassDiagram diagram;
     private String autoSavePath;
     private ArrangeCalculator arrangeCalculator;
-    public ListenerHandler(UMLClassDiagram diagram){
-        this.autoSavePath=System.getProperty("user.dir")+"/Untitled_diagram.diagram";
-        this.diagram=diagram;
-        arrangeCalculator=new ArrangeCalculator(diagram);
+
+    public ListenerHandler(UMLClassDiagram diagram) {
+        this.autoSavePath = System.getProperty("user.dir") + "/Untitled_diagram.diagram";
+        this.diagram = diagram;
+        arrangeCalculator = new ArrangeCalculator(diagram);
     }
 
-    public void executeAddRelation(Point start, Point end, RelationType relationType){
-        arrangeCalculator.bindRelation(start,end,relationType);
+    public void executeAddRelation(Point start, Point end, RelationType relationType) {
+        arrangeCalculator.bindRelation(start, end, relationType);
         executeSaveDiagram(autoSavePath);
     }
 
-    public void executeMoveUnit(Point start , Point end){
-        arrangeCalculator.moveUnit(start,end);
+    public void executeMoveUnit(Point start, Point end) {
+        arrangeCalculator.moveUnit(start, end);
         executeSaveDiagram(autoSavePath);
     }
 
-    public void executeRemoveUnit(Point location){
+    public void executeRemoveUnit(Point location) {
         arrangeCalculator.removeUnit(location);
         executeSaveDiagram(autoSavePath);
     }
 
-    public void executeRemoveRelation(Point location){
+    public void executeRemoveRelation(Point location) {
         arrangeCalculator.removeRelation(location);
         executeSaveDiagram(autoSavePath);
     }
 
-    public void executeSaveDiagram(String path){
-        autoSavePath=path;
-        DiagramWriter diagramWriter =new DiagramWriter(diagram);
+    public void executeSaveDiagram(String path) {
+        autoSavePath = path;
+        DiagramWriter diagramWriter = new DiagramWriter(diagram);
         try {
             diagramWriter.save(path);
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             throw new RuntimeException("File didn't close");
         }
     }
 
-    public void executeOpenDiagram(String path){
+    public void executeOpenDiagram(String path) {
         try {
             DiagramReader diagramReader = new DiagramReader(path);
             diagram.setDiagram(diagramReader.getDiagram());
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("File not found");
         }
-
 
     }
 }
