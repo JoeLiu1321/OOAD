@@ -50,12 +50,12 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer, Drawer {
 
 	@Override
 	public void draw(ConcreteFormat concreteClass) {
-		new DrawableClassFormat(concreteClass).draw(this.graph);
+		new ClassFormatDrawer(concreteClass).draw(this.graph);
 	}
 
 	@Override
 	public void draw(InterfaceFormat interfaceClass) {
-		new DrawableInterfaceFormat(interfaceClass).draw(this.graph);
+		new InterfaceFormatDrawer(interfaceClass).draw(this.graph);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import model.diagrams.RelationType;
 import model.shapes.Relation;
 
-public class DrawableRelation implements Drawable {
+public class DrawableRelation implements SwingDrawer {
     private Relation relation;
 
     public DrawableRelation(Relation relation) {

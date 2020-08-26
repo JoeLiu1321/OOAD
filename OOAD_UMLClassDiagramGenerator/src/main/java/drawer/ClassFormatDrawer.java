@@ -5,10 +5,10 @@ import java.awt.Graphics;
 
 import model.shapes.ClassFormat;
 
-public class DrawableClassFormat implements Drawable {
+public class ClassFormatDrawer implements SwingDrawer {
     private ClassFormat classFormat;
 
-    public DrawableClassFormat(ClassFormat classFormat) {
+    public ClassFormatDrawer(ClassFormat classFormat) {
         this.classFormat = classFormat;
     }
 

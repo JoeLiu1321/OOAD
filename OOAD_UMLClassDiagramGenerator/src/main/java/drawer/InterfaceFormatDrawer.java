@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 import model.shapes.ClassFormat;
 
-public class DrawableInterfaceFormat extends DrawableClassFormat {
-    public DrawableInterfaceFormat(ClassFormat classFormat) {
+public class InterfaceFormatDrawer extends ClassFormatDrawer {
+    public InterfaceFormatDrawer(ClassFormat classFormat) {
         super(classFormat);
     }
 

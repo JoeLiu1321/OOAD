@@ -2,6 +2,6 @@ package drawer;
 
 import java.awt.Graphics;
 
-public interface Drawable {
+public interface SwingDrawer {
 	void draw(Graphics g);
 }
