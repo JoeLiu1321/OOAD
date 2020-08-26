@@ -2,13 +2,13 @@ package drawer;
 
 import java.awt.Graphics;
 
+import model.classDetail.Relation;
 import model.diagrams.RelationType;
-import model.shapes.Relation;
 
-public class DrawableRelation implements SwingDrawer {
+public class RelationDrawer implements SwingDrawer {
     private Relation relation;
 
-    public DrawableRelation(Relation relation) {
+    public RelationDrawer(Relation relation) {
         this.relation = relation;
     }
 

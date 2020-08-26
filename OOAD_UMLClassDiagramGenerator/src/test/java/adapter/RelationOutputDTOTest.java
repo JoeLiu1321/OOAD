@@ -1,11 +1,11 @@
 package adapter;
 
+import model.classDetail.ClassFormat;
+import model.classDetail.ConcreteFormat;
+import model.classDetail.Relation;
 import model.diagrams.RelationType;
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.ClassFormat;
-import model.shapes.ConcreteFormat;
-import model.shapes.Relation;
 
 import static org.junit.Assert.*;
 

@@ -4,8 +4,9 @@ import generator.ClassRelationGenerator;
 import generator.ClassUnitGenerator;
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.ClassFormat;
-import model.shapes.Relation;
+
+import model.classDetail.ClassFormat;
+import model.classDetail.Relation;
 import model.diagrams.*;
 import java.awt.*;
 import java.util.Arrays;

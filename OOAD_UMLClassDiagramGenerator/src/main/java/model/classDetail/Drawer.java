@@ -1,4 +1,4 @@
-package model.shapes;
+package model.classDetail;
 
 public interface Drawer {
     public abstract void draw(ConcreteFormat concreteClass);

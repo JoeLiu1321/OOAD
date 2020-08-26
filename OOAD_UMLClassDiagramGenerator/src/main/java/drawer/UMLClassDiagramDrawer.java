@@ -1,5 +1,10 @@
 package drawer;
 
+import model.classDetail.ClassFormat;
+import model.classDetail.ConcreteFormat;
+import model.classDetail.Drawer;
+import model.classDetail.InterfaceFormat;
+import model.classDetail.Relation;
 import model.diagrams.UMLClassDiagram;
 import java.awt.*;
 import java.util.Iterator;
@@ -7,11 +12,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-import model.shapes.ClassFormat;
-import model.shapes.ConcreteFormat;
-import model.shapes.Relation;
-import model.shapes.Drawer;
-import model.shapes.InterfaceFormat;
 
 public class UMLClassDiagramDrawer extends JPanel implements Observer, Drawer {
 	private static final long serialVersionUID = 1L;
@@ -60,6 +60,6 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer, Drawer {
 
 	@Override
 	public void draw(Relation relation) {
-		new DrawableRelation(relation).draw(this.graph);
+		new RelationDrawer(relation).draw(this.graph);
 	}
 }

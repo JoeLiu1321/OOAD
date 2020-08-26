@@ -2,8 +2,9 @@ package adapter;
 
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.ClassFormat;
-import model.shapes.ConcreteFormat;
+
+import model.classDetail.ClassFormat;
+import model.classDetail.ConcreteFormat;
 
 import java.util.ArrayList;
 import java.util.List;

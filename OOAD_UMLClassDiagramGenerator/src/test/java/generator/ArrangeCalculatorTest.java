@@ -1,9 +1,10 @@
 package generator;
 
+import model.classDetail.ClassFormat;
+import model.classDetail.ConcreteFormat;
 import model.diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
-import model.shapes.ClassFormat;
-import model.shapes.ConcreteFormat;
+
 import org.junit.Test;
 
 import java.awt.Point;

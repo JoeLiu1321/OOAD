@@ -2,7 +2,9 @@ package shapes;
 
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.*;
+
+import model.classDetail.*;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Arrays;

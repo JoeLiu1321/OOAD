@@ -1,8 +1,8 @@
 package adapter;
 
-import model.shapes.ClassFormat;
-
 import java.util.List;
+
+import model.classDetail.ClassFormat;
 
 public class ClassFormatOutputDTO {
     private String output;

@@ -1,9 +1,10 @@
 package shapes;
 
+import model.classDetail.*;
 import model.diagrams.RelationType;
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.*;
+
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;

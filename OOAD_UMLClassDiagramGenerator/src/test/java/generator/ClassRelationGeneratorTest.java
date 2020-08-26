@@ -1,10 +1,10 @@
 package generator;
 
+import model.classDetail.ClassFormat;
+import model.classDetail.Relation;
 import model.diagrams.RelationType;
 import org.junit.Before;
 import org.junit.Test;
-import model.shapes.ClassFormat;
-import model.shapes.Relation;
 
 import java.util.Arrays;
 

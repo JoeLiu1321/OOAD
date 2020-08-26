@@ -14,6 +14,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import model.ClassDetailInfo.*;
+import model.classDetail.ClassFormat;
 import adapter.ClassDetailInfoDTO;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
@@ -22,7 +23,6 @@ import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;
 import listeners.Listener;
 import listeners.ListenerHandler;
-import model.shapes.ClassFormat;
 import viewTool.Tool;
 
 public class View {

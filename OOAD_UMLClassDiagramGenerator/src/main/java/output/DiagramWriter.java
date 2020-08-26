@@ -2,9 +2,9 @@ package output;
 
 import adapter.ClassFormatOutputDTO;
 import adapter.RelationOutputDTO;
+import model.classDetail.ClassFormat;
+import model.classDetail.Relation;
 import model.diagrams.UMLClassDiagram;
-import model.shapes.ClassFormat;
-import model.shapes.Relation;
 
 import java.io.File;
 import java.io.FileWriter;

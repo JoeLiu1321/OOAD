@@ -1,11 +1,11 @@
 package output;
 
+import model.classDetail.ClassFormat;
+import model.classDetail.Relation;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
 import generator.ClassRelationGenerator;
 import generator.ClassUnitGenerator;
-import model.shapes.ClassFormat;
-import model.shapes.Relation;
 
 import java.awt.*;
 import java.util.*;

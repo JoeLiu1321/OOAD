@@ -1,4 +1,4 @@
-package model.shapes;
+package model.classDetail;
 
 import model.diagrams.RelationType;
 

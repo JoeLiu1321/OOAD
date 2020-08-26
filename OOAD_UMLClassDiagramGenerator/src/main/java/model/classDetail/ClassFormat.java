@@ -1,4 +1,4 @@
-package model.shapes;
+package model.classDetail;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
