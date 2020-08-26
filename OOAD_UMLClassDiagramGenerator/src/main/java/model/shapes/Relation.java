@@ -4,7 +4,7 @@ import model.diagrams.RelationType;
 
 import java.awt.Point;
 
-public class Relation {
+public class Relation implements Drawable {
     private ClassFormat startClass, endClass;
     private RelationType relationType;
     private int startX, endX, startY, endY;
@@ -96,5 +96,10 @@ public class Relation {
             }
         }
 
+    }
+
+    @Override
+    public void draw(Drawer drawer) {
+        drawer.draw(this);
     }
 }

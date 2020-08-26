@@ -8,14 +8,19 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import model.shapes.ClassFormat;
+import model.shapes.ConcreteFormat;
 import model.shapes.Relation;
-import drawer.DrawableClassFormat;
-import drawer.DrawableRelation;
+import model.shapes.Drawer;
+import model.shapes.InterfaceFormat;
 
-public class UMLClassDiagramDrawer extends JPanel implements Observer {
+public class UMLClassDiagramDrawer extends JPanel implements Observer, Drawer {
+	private static final long serialVersionUID = 1L;
 	private UMLClassDiagram diagram;
+	private Graphics graph;
 
 	public UMLClassDiagramDrawer(UMLClassDiagram diagram) {
+		super();
+		this.graph = this.getGraphics();
 		this.diagram = diagram;
 		this.diagram.addObserver(this);
 		setSize(diagram.getWidth(), diagram.getHeight());
@@ -23,27 +28,38 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+		this.graph = g;
+		super.paintComponent(this.graph);
 		Iterator<Map.Entry<String, ClassFormat>> classFormats = diagram.createClassFormatIterator();
 		while (classFormats.hasNext()) {
 			Map.Entry<String, ClassFormat> entry = classFormats.next();
-			DrawableClassFormat classFormat = new DrawableClassFormat(entry.getValue());
-			classFormat.draw(g);
+			ClassFormat classFormat = entry.getValue();
+			classFormat.draw(this);
 		}
 		Iterator<Relation> relations = diagram.createRelationIterator();
 		while (relations.hasNext()) {
 			Relation relation = relations.next();
-			DrawableRelation drawableRelation = new DrawableRelation(relation);
-			drawableRelation.draw(g);
+			relation.draw(this);
 		}
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		Drawable drawable = (Drawable) arg;
-		if (drawable != null)
-			drawable.draw(getGraphics());
-		else
-			repaint();
+		repaint();
+	}
+
+	@Override
+	public void draw(ConcreteFormat concreteClass) {
+		new DrawableClassFormat(concreteClass).draw(this.graph);
+	}
+
+	@Override
+	public void draw(InterfaceFormat interfaceClass) {
+		new DrawableInterfaceFormat(interfaceClass).draw(this.graph);
+	}
+
+	@Override
+	public void draw(Relation relation) {
+		new DrawableRelation(relation).draw(this.graph);
 	}
 }

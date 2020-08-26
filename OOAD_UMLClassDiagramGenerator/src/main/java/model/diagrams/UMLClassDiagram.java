@@ -54,12 +54,6 @@ public class UMLClassDiagram extends Observable {
 	}
 
 	@Override
-	public void notifyObservers(Object object) {
-		setChanged();
-		super.notifyObservers(object);
-	}
-
-	@Override
 	public void notifyObservers() {
 		setChanged();
 		super.notifyObservers();
@@ -67,12 +61,12 @@ public class UMLClassDiagram extends Observable {
 
 	public void addToDiagram(ClassFormat format) {
 		classFormatCollection.put(format.getClassName(), format);
-		notifyObservers(format);
+		notifyObservers();
 	}
 
 	public void addToDiagram(Relation relation) {
 		relations.add(relation);
-		notifyObservers(relation);
+		notifyObservers();
 
 	}
 

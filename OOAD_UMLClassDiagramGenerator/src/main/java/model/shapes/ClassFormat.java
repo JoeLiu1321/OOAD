@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ClassFormat extends Rectangle {
+public abstract class ClassFormat extends Rectangle implements Drawable {
 	private String className;
 	private List<Relation> relations;
 	private List<String> methods;
@@ -74,4 +74,5 @@ public abstract class ClassFormat extends Rectangle {
 	public void setVariables(List<String> variables) {
 		this.variables = variables;
 	}
+
 }
