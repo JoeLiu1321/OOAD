@@ -1,10 +1,11 @@
 package model.classDetail;
 
 import model.diagrams.RelationType;
+import visitor.Visitor;
 
 import java.awt.Point;
 
-public class Relation implements Drawable {
+public class Relation implements Visitable {
     private ClassFormat startClass, endClass;
     private RelationType relationType;
     private int startX, endX, startY, endY;
@@ -99,7 +100,7 @@ public class Relation implements Drawable {
     }
 
     @Override
-    public void draw(Drawer drawer) {
-        drawer.draw(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }
