@@ -29,10 +29,9 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Visitor drawVisitor = new DrawVisitor(g);
-		Iterator<Map.Entry<String, ClassFormat>> classFormats = diagram.createClassFormatIterator();
+		Iterator<ClassFormat> classFormats = diagram.createClassFormatIterator();
 		while (classFormats.hasNext()) {
-			Map.Entry<String, ClassFormat> entry = classFormats.next();
-			ClassFormat classFormat = entry.getValue();
+			ClassFormat classFormat = classFormats.next();
 			classFormat.accept(drawVisitor);
 		}
 		Iterator<Relation> relations = diagram.createRelationIterator();

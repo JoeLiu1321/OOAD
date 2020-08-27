@@ -80,7 +80,7 @@ public class UMLClassDiagramTest {
     @Test
     public void createClassFormatIterator() {
         diagram.addToDiagram(startClass);
-        ClassFormat actual = diagram.createClassFormatIterator().next().getValue();
+        ClassFormat actual = diagram.createClassFormatIterator().next();
         assertSame(startClass, actual);
     }
 

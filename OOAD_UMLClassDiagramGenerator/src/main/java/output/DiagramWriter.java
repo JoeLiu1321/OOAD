@@ -23,10 +23,10 @@ public class DiagramWriter {
         FileWriter fw = null;
         try {
             fw = new FileWriter(new File(path));
-            Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+            Iterator<ClassFormat> classFormatIterator = diagram.createClassFormatIterator();
             Iterator<Relation> relationIterator = diagram.createRelationIterator();
             while (classFormatIterator.hasNext()) {
-                ClassFormat classFormat = classFormatIterator.next().getValue();
+                ClassFormat classFormat = classFormatIterator.next();
                 ClassFormatOutputDTO classFormatOutputDTO = new ClassFormatOutputDTO(classFormat);
                 fw.write(classFormatOutputDTO.getOutput());
                 fw.write("\r\n");

@@ -20,13 +20,13 @@ public class ArrangeCalculator {
     public void arrange() {
         int width = diagram.getWidth(), startX = 50, offsetX = 300, offsetY = 300;
         int x = startX, y = 50;
-        Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+        Iterator<ClassFormat> classFormatIterator = diagram.createClassFormatIterator();
         while (classFormatIterator.hasNext()) {
             if (x + offsetX >= width) {
                 y += offsetY;
                 x = startX;
             }
-            ClassFormat format = classFormatIterator.next().getValue();
+            ClassFormat format = classFormatIterator.next();
             format.setLocation(x, y);
             x += offsetX;
         }
@@ -61,9 +61,9 @@ public class ArrangeCalculator {
 
     public ClassFormat checkPointContains(Point point) {
         ClassFormat containClass = null;
-        Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+        Iterator<ClassFormat> classFormatIterator = diagram.createClassFormatIterator();
         while (classFormatIterator.hasNext()) {
-            ClassFormat classFormat = classFormatIterator.next().getValue();
+            ClassFormat classFormat = classFormatIterator.next();
             if (classFormat.contains(point))
                 containClass = classFormat;
         }
@@ -101,9 +101,9 @@ public class ArrangeCalculator {
 
     public void moveUnit(Point start, Point end) {
         ClassFormat startClass = null;
-        Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+        Iterator<ClassFormat> classFormatIterator = diagram.createClassFormatIterator();
         while (classFormatIterator.hasNext()) {
-            ClassFormat classFormat = classFormatIterator.next().getValue();
+            ClassFormat classFormat = classFormatIterator.next();
             if (classFormat.contains(start))
                 startClass = classFormat;
         }

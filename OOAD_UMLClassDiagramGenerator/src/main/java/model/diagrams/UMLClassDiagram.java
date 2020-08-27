@@ -22,9 +22,9 @@ public class UMLClassDiagram extends Observable {
 	public void setDiagram(UMLClassDiagram diagram) {
 		classFormatCollection.clear();
 		relations.clear();
-		Iterator<Map.Entry<String, ClassFormat>> classFormatIterator = diagram.createClassFormatIterator();
+		Iterator<ClassFormat> classFormatIterator = diagram.createClassFormatIterator();
 		while (classFormatIterator.hasNext()) {
-			ClassFormat classFormat = classFormatIterator.next().getValue();
+			ClassFormat classFormat = classFormatIterator.next();
 			classFormatCollection.put(classFormat.getClassName(), classFormat);
 		}
 		Iterator<Relation> relationIterator = diagram.createRelationIterator();
@@ -75,8 +75,8 @@ public class UMLClassDiagram extends Observable {
 		notifyObservers();
 	}
 
-	public Iterator<Map.Entry<String, ClassFormat>> createClassFormatIterator() {
-		return classFormatCollection.entrySet().iterator();
+	public Iterator<ClassFormat> createClassFormatIterator() {
+		return classFormatCollection.values().iterator();
 	}
 
 	public Iterator<Relation> createRelationIterator() {
