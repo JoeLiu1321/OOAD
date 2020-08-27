@@ -1,7 +1,6 @@
 package drawer;
 
-import java.awt.Graphics;
-
+import canvas.Canvas;
 import model.geometric.ClassFormat;
 
 public class InterfaceFormatDrawer extends ClassFormatDrawer {
@@ -10,17 +9,17 @@ public class InterfaceFormatDrawer extends ClassFormatDrawer {
     }
 
     @Override
-    protected int drawClassName(Graphics g, int x, int y) {
-        int lineHeight = g.getFontMetrics().getHeight();
-        g.drawString("<<interface>>", x, y);
+    protected int drawClassName(Canvas canvas, int x, int y) {
+        int lineHeight = canvas.getHeight();
+        canvas.drawString("<<interface>>", x, y);
         y += lineHeight;
-        y = super.drawClassName(g, x, y);
+        y = super.drawClassName(canvas, x, y);
         return y;
     }
 
     @Override
-    protected int drawVariable(Graphics g, int x, int y) {
-        y += 2 * g.getFontMetrics().getHeight();
+    protected int drawVariable(Canvas canvas, int x, int y) {
+        y += 2 * canvas.getHeight();
         return y;
     }
 }

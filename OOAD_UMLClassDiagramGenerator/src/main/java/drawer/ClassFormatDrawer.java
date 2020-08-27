@@ -1,59 +1,54 @@
 package drawer;
 
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-
+import canvas.Canvas;
 import model.geometric.ClassFormat;
 
-public class ClassFormatDrawer implements SwingDrawer {
+public class ClassFormatDrawer implements Drawer {
     private ClassFormat classFormat;
 
     public ClassFormatDrawer(ClassFormat classFormat) {
         this.classFormat = classFormat;
     }
 
-    protected int drawVariable(Graphics g, int x, int y) {
-        FontMetrics m = g.getFontMetrics();
-        int lineHeight = m.getHeight();
+    protected int drawVariable(Canvas canvas, int x, int y) {
+        int lineHeight = canvas.getHeight();
         for (String variable : classFormat.getVariables()) {
             y += lineHeight;
-            g.drawString(variable, x, y);
+            canvas.drawString(variable, x, y);
         }
         return y;
     }
 
-    protected int drawMethod(Graphics g, int x, int y) {
-        FontMetrics m = g.getFontMetrics();
-        int lineHeight = m.getHeight();
+    protected int drawMethod(Canvas canvas, int x, int y) {
+        int lineHeight = canvas.getHeight();
         for (String method : classFormat.getMethods()) {
             y += lineHeight;
-            g.drawString(method, x, y);
+            canvas.drawString(method, x, y);
         }
         return y;
     }
 
-    protected int drawClassName(Graphics g, int x, int y) {
-        g.drawString(classFormat.getClassName(), x, y);
+    protected int drawClassName(Canvas canvas, int x, int y) {
+        canvas.drawString(classFormat.getClassName(), x, y);
         return y;
     }
 
     @Override
-    public void draw(Graphics g) {
-        FontMetrics m = g.getFontMetrics();
-        int lineHeight = m.getHeight();
+    public void draw(Canvas canvas) {
+        int lineHeight = canvas.getHeight();
         int width = classFormat.width, height = classFormat.height;
         int x = classFormat.x, y = classFormat.y, padding = 5;
 
-        g.drawRect(x, y, width, height);
-        y = drawClassName(g, x + padding, y + lineHeight);
+        canvas.drawRect(x, y, width, height);
+        y = drawClassName(canvas, x + padding, y + lineHeight);
         y += lineHeight;
-        g.drawLine(x, y, x + width, y);
+        canvas.drawLine(x, y, x + width, y);
 
-        y = drawVariable(g, x + padding, y);
+        y = drawVariable(canvas, x + padding, y);
 
         y += lineHeight;
-        g.drawLine(x, y, x + width, y);
+        canvas.drawLine(x, y, x + width, y);
 
-        y = drawMethod(g, x + padding, y);
+        y = drawMethod(canvas, x + padding, y);
     }
 }

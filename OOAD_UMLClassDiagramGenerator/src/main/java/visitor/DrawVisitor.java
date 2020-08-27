@@ -1,7 +1,6 @@
 package visitor;
 
-import java.awt.Graphics;
-
+import canvas.Canvas;
 import drawer.ClassFormatDrawer;
 import drawer.InterfaceFormatDrawer;
 import drawer.RelationDrawer;
@@ -10,29 +9,29 @@ import model.geometric.InterfaceFormat;
 import model.geometric.Relation;
 
 public class DrawVisitor implements Visitor {
-    private Graphics graph;
+    private Canvas canvas;
 
-    public DrawVisitor(Graphics graph) {
-        this.graph = graph;
-    }
-
-    public void setGraph(Graphics graph) {
-        this.graph = graph;
+    public DrawVisitor(Canvas canvas) {
+        setCanvas(canvas);
     }
 
     @Override
     public void visit(ConcreteFormat concreteClass) {
-        new ClassFormatDrawer(concreteClass).draw(this.graph);
+        new ClassFormatDrawer(concreteClass).draw(canvas);
     }
 
     @Override
     public void visit(InterfaceFormat interfaceClass) {
-        new InterfaceFormatDrawer(interfaceClass).draw(this.graph);
+        new InterfaceFormatDrawer(interfaceClass).draw(canvas);
     }
 
     @Override
     public void visit(Relation relation) {
-        new RelationDrawer(relation).draw(this.graph);
+        new RelationDrawer(relation).draw(canvas);
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
     }
 
 }

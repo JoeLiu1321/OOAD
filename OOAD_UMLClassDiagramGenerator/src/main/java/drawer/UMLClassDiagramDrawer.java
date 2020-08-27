@@ -4,16 +4,15 @@ import visitor.DrawVisitor;
 import visitor.Visitor;
 import model.diagrams.UMLClassDiagram;
 import model.geometric.ClassFormat;
-import model.geometric.ConcreteFormat;
-import model.geometric.InterfaceFormat;
 import model.geometric.Relation;
 
 import java.awt.*;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
+import canvas.Canvas;
+import canvas.SwingCanvas;
 
 public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +28,8 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Visitor drawVisitor = new DrawVisitor(g);
+		Canvas canvas = new SwingCanvas(g);
+		Visitor drawVisitor = new DrawVisitor(canvas);
 		Iterator<ClassFormat> classFormats = diagram.createClassFormatIterator();
 		while (classFormats.hasNext()) {
 			ClassFormat classFormat = classFormats.next();
