@@ -2,7 +2,7 @@ package adapter;
 
 import java.util.List;
 
-import model.classDetail.ClassFormat;
+import model.geometric.ClassFormat;
 
 public class ClassFormatOutputDTO {
     private String output;

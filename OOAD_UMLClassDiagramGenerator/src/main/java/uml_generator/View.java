@@ -14,10 +14,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import model.ClassDetailInfo.*;
-import model.classDetail.ClassFormat;
 import adapter.ClassDetailInfoDTO;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
+import model.geometric.ClassFormat;
 import drawer.UMLClassDiagramDrawer;
 import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;

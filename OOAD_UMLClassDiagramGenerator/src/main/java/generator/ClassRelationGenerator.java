@@ -1,8 +1,8 @@
 package generator;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.Relation;
 import model.diagrams.RelationType;
+import model.geometric.ClassFormat;
+import model.geometric.Relation;
 
 public class ClassRelationGenerator {
 

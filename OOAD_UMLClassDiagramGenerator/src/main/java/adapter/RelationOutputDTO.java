@@ -1,6 +1,6 @@
 package adapter;
 
-import model.classDetail.Relation;
+import model.geometric.Relation;
 
 public class RelationOutputDTO {
     private String output;

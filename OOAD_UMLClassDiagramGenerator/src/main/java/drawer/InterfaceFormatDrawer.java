@@ -2,7 +2,7 @@ package drawer;
 
 import java.awt.Graphics;
 
-import model.classDetail.ClassFormat;
+import model.geometric.ClassFormat;
 
 public class InterfaceFormatDrawer extends ClassFormatDrawer {
     public InterfaceFormatDrawer(ClassFormat classFormat) {

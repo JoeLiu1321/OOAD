@@ -1,6 +1,6 @@
 package visitor;
 
-import model.classDetail.*;
+import model.geometric.*;
 
 public interface Visitor {
     public abstract void visit(ConcreteFormat concreteClass);

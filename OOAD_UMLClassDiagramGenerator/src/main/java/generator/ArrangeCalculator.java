@@ -1,9 +1,9 @@
 package generator;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.Relation;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
+import model.geometric.ClassFormat;
+import model.geometric.Relation;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

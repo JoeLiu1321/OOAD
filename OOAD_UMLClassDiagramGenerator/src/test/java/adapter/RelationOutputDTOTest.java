@@ -1,9 +1,10 @@
 package adapter;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.ConcreteFormat;
-import model.classDetail.Relation;
 import model.diagrams.RelationType;
+import model.geometric.ClassFormat;
+import model.geometric.ConcreteFormat;
+import model.geometric.Relation;
+
 import org.junit.Before;
 import org.junit.Test;
 

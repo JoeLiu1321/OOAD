@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import drawer.ClassFormatDrawer;
 import drawer.InterfaceFormatDrawer;
 import drawer.RelationDrawer;
-import model.classDetail.ConcreteFormat;
-import model.classDetail.InterfaceFormat;
-import model.classDetail.Relation;
+import model.geometric.ConcreteFormat;
+import model.geometric.InterfaceFormat;
+import model.geometric.Relation;
 
 public class DrawVisitor implements Visitor {
     private Graphics graph;

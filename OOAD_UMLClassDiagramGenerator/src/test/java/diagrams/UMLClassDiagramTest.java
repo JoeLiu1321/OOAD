@@ -5,9 +5,10 @@ import generator.ClassUnitGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.Relation;
 import model.diagrams.*;
+import model.geometric.ClassFormat;
+import model.geometric.Relation;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Iterator;

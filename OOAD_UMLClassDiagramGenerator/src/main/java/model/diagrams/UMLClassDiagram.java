@@ -3,8 +3,8 @@ package model.diagrams;
 import java.util.*;
 import java.util.List;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.Relation;
+import model.geometric.ClassFormat;
+import model.geometric.Relation;
 
 public class UMLClassDiagram extends Observable {
 	private Map<String, ClassFormat> classFormatCollection;

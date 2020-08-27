@@ -1,4 +1,4 @@
-package model.classDetail;
+package model.geometric;
 
 import model.diagrams.RelationType;
 import visitor.Visitor;

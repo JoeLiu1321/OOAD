@@ -3,7 +3,7 @@ package drawer;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-import model.classDetail.ClassFormat;
+import model.geometric.ClassFormat;
 
 public class ClassFormatDrawer implements SwingDrawer {
     private ClassFormat classFormat;

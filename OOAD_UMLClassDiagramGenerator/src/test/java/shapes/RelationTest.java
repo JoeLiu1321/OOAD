@@ -1,7 +1,8 @@
 package shapes;
 
-import model.classDetail.*;
 import model.diagrams.RelationType;
+import model.geometric.*;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -2,9 +2,9 @@ package generator;
 
 import java.util.List;
 import adapter.ClassDetailInfoDTO;
-import model.classDetail.ClassFormat;
-import model.classDetail.ConcreteFormat;
-import model.classDetail.InterfaceFormat;
+import model.geometric.ClassFormat;
+import model.geometric.ConcreteFormat;
+import model.geometric.InterfaceFormat;
 
 public class ClassUnitGenerator {
 	private int x, y, width, height;

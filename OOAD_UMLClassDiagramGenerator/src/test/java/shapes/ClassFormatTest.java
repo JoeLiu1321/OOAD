@@ -3,7 +3,7 @@ package shapes;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.classDetail.*;
+import model.geometric.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

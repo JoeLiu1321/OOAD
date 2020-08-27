@@ -1,12 +1,13 @@
 package drawer;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.ConcreteFormat;
 import visitor.DrawVisitor;
 import visitor.Visitor;
-import model.classDetail.InterfaceFormat;
-import model.classDetail.Relation;
 import model.diagrams.UMLClassDiagram;
+import model.geometric.ClassFormat;
+import model.geometric.ConcreteFormat;
+import model.geometric.InterfaceFormat;
+import model.geometric.Relation;
+
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Map;

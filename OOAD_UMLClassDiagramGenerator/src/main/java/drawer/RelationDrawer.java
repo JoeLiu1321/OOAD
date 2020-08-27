@@ -2,8 +2,8 @@ package drawer;
 
 import java.awt.Graphics;
 
-import model.classDetail.Relation;
 import model.diagrams.RelationType;
+import model.geometric.Relation;
 
 public class RelationDrawer implements SwingDrawer {
     private Relation relation;

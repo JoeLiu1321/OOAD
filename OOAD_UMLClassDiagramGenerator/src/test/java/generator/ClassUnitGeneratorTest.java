@@ -1,7 +1,7 @@
 package generator;
 
 import model.ClassDetailInfo.*;
-import model.classDetail.ClassFormat;
+import model.geometric.ClassFormat;
 import adapter.ClassDetailInfoDTO;
 import org.junit.Before;
 import org.junit.Test;

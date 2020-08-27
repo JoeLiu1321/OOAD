@@ -3,8 +3,8 @@ package adapter;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.classDetail.ClassFormat;
-import model.classDetail.ConcreteFormat;
+import model.geometric.ClassFormat;
+import model.geometric.ConcreteFormat;
 
 import java.util.ArrayList;
 import java.util.List;
