@@ -34,4 +34,9 @@ public class TextOutputStrategy implements OutputStrategy {
         }
         return outputBuilder.toString();
     }
+
+    @Override
+    public String getExtension() {
+        return ".diagram";
+    }
 }

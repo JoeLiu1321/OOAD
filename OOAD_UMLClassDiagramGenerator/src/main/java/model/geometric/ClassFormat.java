@@ -5,6 +5,8 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.diagrams.ClassFormatType;
+
 public abstract class ClassFormat extends Rectangle implements Visitable {
 	private String className;
 	private transient List<Relation> relations;
@@ -16,6 +18,8 @@ public abstract class ClassFormat extends Rectangle implements Visitable {
 		setClassName(className);
 		relations = new ArrayList<>();
 	}
+
+	public abstract ClassFormatType getType();
 
 	@Override
 	public boolean contains(Point2D p) {

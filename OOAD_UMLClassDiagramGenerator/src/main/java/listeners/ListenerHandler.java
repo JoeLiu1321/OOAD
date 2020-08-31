@@ -5,9 +5,9 @@ import model.diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
 import output.DiagramReader;
 import output.DiagramWriter;
-import output.InputStrategy;
+import output.ConvertStrategy;
 import output.OutputStrategy;
-import output.TextInputStrategy;
+import output.TextConvertStrategy;
 import output.TextOutputStrategy;
 
 import java.awt.*;
@@ -57,7 +57,7 @@ public class ListenerHandler {
 
     public void executeOpenDiagram(String path) {
         try {
-            InputStrategy strategy = new TextInputStrategy();
+            ConvertStrategy strategy = new TextConvertStrategy();
             DiagramReader diagramReader = new DiagramReader(strategy);
             UMLClassDiagram diagram = diagramReader.read(path);
             this.diagram.setDiagram(diagram);

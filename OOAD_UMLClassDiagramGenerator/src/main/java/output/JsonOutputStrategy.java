@@ -17,4 +17,9 @@ public class JsonOutputStrategy implements OutputStrategy {
         return g.toJson(diagram);
     }
 
+    @Override
+    public String getExtension() {
+        return ".json";
+    }
+
 }

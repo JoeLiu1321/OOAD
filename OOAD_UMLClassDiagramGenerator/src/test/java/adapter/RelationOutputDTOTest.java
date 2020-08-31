@@ -30,7 +30,6 @@ public class RelationOutputDTOTest {
     @Test
     public void getOutput() {
         RelationOutputDTO relationOutputDTO = new RelationOutputDTO(relation);
-        // System.out.println(relationOutputDTO.getOutput());
         assertEquals("StartClass:mainTest;EndClass:main;Type:Composition;StartPoint:0,0;EndPoint:0,0",
                 relationOutputDTO.getOutput());
     }

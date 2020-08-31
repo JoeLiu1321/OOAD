@@ -12,10 +12,10 @@ import model.diagrams.UMLClassDiagram;
 import model.geometric.ClassFormat;
 import model.geometric.Relation;
 
-public class TextInputStrategy implements InputStrategy {
+public class TextConvertStrategy implements ConvertStrategy {
 
     @Override
-    public UMLClassDiagram input(String[] input) {
+    public UMLClassDiagram convert(String[] input) {
         Map<String, Map<String, String>> diagramData = convertToMap(input);
         UMLClassDiagram diagram = convertDiagram(diagramData);
         return diagram;

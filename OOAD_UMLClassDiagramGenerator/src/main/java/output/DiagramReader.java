@@ -12,10 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class DiagramReader {
-    private UMLClassDiagram diagram;
-    private InputStrategy strategy;
+    private ConvertStrategy strategy;
 
-    public DiagramReader(InputStrategy strategy) throws Exception {
+    public DiagramReader(ConvertStrategy strategy) throws Exception {
         this.strategy = strategy;
     }
 
@@ -36,7 +35,7 @@ public class DiagramReader {
     public UMLClassDiagram read(String path) throws Exception {
         List<String> listContent = readDiagram(path);
         String[] arrayContent = listContent.toArray(new String[listContent.size()]);
-        UMLClassDiagram diagram = strategy.input(arrayContent);
+        UMLClassDiagram diagram = strategy.convert(arrayContent);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         int width = (int) d.getWidth(), height = (int) d.getHeight();
@@ -45,7 +44,4 @@ public class DiagramReader {
         return diagram;
     }
 
-    public UMLClassDiagram getDiagram() {
-        return diagram;
-    }
 }
