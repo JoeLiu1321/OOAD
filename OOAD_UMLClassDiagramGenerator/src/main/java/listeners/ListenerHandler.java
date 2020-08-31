@@ -5,7 +5,9 @@ import model.diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
 import output.DiagramReader;
 import output.DiagramWriter;
+import output.InputStrategy;
 import output.OutputStrategy;
+import output.TextInputStrategy;
 import output.TextOutputStrategy;
 
 import java.awt.*;
@@ -55,8 +57,10 @@ public class ListenerHandler {
 
     public void executeOpenDiagram(String path) {
         try {
-            DiagramReader diagramReader = new DiagramReader(path);
-            diagram.setDiagram(diagramReader.getDiagram());
+            InputStrategy strategy = new TextInputStrategy();
+            DiagramReader diagramReader = new DiagramReader(strategy);
+            UMLClassDiagram diagram = diagramReader.read(path);
+            this.diagram.setDiagram(diagram);
         } catch (Exception e) {
             throw new RuntimeException("File not found");
         }

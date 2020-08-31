@@ -42,8 +42,9 @@ public class DiagramWriterTest {
         OutputStrategy strategy = new TextOutputStrategy(diagram);
         DiagramWriter diagramWriter = new DiagramWriter(strategy);
         diagramWriter.write(path);
-        DiagramReader diagramReader = new DiagramReader(path);
-        UMLClassDiagram newDiagram = diagramReader.getDiagram();
+        InputStrategy inputStrategy = new TextInputStrategy();
+        DiagramReader diagramReader = new DiagramReader(inputStrategy);
+        UMLClassDiagram newDiagram = diagramReader.read(path);
         assertEquals(diagram.getClassFormat("main"), newDiagram.getClassFormat("main"));
         assertEquals(diagram.getClassFormat("main").getMethods(), newDiagram.getClassFormat("main").getMethods());
     }
