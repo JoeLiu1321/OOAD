@@ -39,24 +39,12 @@ public class DiagramWriterTest {
     @Test
     public void save() throws Exception {
         String path = System.getProperty("user.dir") + "/tmp.diagram";
-        DiagramWriter diagramWriter = new DiagramWriter(diagram);
-        diagramWriter.save(path);
+        OutputStrategy strategy = new TextOutputStrategy(diagram);
+        DiagramWriter diagramWriter = new DiagramWriter(strategy);
+        diagramWriter.write(path);
         DiagramReader diagramReader = new DiagramReader(path);
         UMLClassDiagram newDiagram = diagramReader.getDiagram();
-        // newDiagram.getClassFormat("main");
         assertEquals(diagram.getClassFormat("main"), newDiagram.getClassFormat("main"));
         assertEquals(diagram.getClassFormat("main").getMethods(), newDiagram.getClassFormat("main").getMethods());
-        // FileWriter fw=new FileWriter(new
-        // File(System.getProperty("user.dir")+"/test.txt"));
-        // fw.write("12345");
-        // fw.write("\r\n");
-        // fw.write("12345");
-        // fw.close();
-    }
-
-    @Test
-    public void test() {
-        String s = "";
-        s.contains(",");
     }
 }

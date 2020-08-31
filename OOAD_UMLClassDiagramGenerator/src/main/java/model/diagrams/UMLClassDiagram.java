@@ -19,6 +19,14 @@ public class UMLClassDiagram extends Observable {
 		setHeight(height);
 	}
 
+	public UMLClassDiagram() {
+		super();
+		setWidth(0);
+		setHeight(0);
+		classFormatCollection = new TreeMap<>();
+		relations = new ArrayList<>();
+	}
+
 	public void setDiagram(UMLClassDiagram diagram) {
 		classFormatCollection.clear();
 		relations.clear();

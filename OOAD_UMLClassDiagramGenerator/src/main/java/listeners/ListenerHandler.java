@@ -5,6 +5,8 @@ import model.diagrams.UMLClassDiagram;
 import generator.ArrangeCalculator;
 import output.DiagramReader;
 import output.DiagramWriter;
+import output.OutputStrategy;
+import output.TextOutputStrategy;
 
 import java.awt.*;
 import java.io.IOException;
@@ -42,9 +44,10 @@ public class ListenerHandler {
 
     public void executeSaveDiagram(String path) {
         autoSavePath = path;
-        DiagramWriter diagramWriter = new DiagramWriter(diagram);
+        OutputStrategy strategy = new TextOutputStrategy(diagram);
+        DiagramWriter diagramWriter = new DiagramWriter(strategy);
         try {
-            diagramWriter.save(path);
+            diagramWriter.write(path);
         } catch (IOException ioe) {
             throw new RuntimeException("File didn't close");
         }

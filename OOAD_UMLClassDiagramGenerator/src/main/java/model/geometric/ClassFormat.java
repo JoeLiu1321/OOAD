@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class ClassFormat extends Rectangle implements Visitable {
 	private String className;
-	private List<Relation> relations;
+	private transient List<Relation> relations;
 	private List<String> methods;
 	private List<String> variables;
 
