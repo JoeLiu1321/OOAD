@@ -12,10 +12,7 @@ public class DiagramWriter {
     }
 
     public void write(String path) throws IOException {
-        String fileExtension = strategy.getExtension();
-        int extensionIndex = path.lastIndexOf(".");
-        String newPath = path.substring(0, extensionIndex) + fileExtension;
-        File f = new File(newPath);
+        File f = new File(path);
 
         String output = strategy.output();
         FileWriter fw = null;

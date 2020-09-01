@@ -44,8 +44,6 @@ public class Listener {
             int option = fileChooser.showSaveDialog(null);
             if (option == JFileChooser.APPROVE_OPTION) {
                 String path = fileChooser.getSelectedFile().getPath();
-                if (!path.contains(".diagram"))
-                    path += ".diagram";
                 listenerHandler.executeSaveDiagram(path);
             }
         }

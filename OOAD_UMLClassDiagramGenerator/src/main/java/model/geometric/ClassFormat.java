@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.diagrams.ClassFormatType;
+import visitor.Visitor;
 
 public abstract class ClassFormat extends Rectangle implements Visitable {
 	private String className;

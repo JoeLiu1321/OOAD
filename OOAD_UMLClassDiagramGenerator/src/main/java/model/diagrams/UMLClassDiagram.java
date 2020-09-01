@@ -6,13 +6,12 @@ import java.util.List;
 import model.geometric.ClassFormat;
 import model.geometric.Relation;
 
-public class UMLClassDiagram extends Observable {
+public class UMLClassDiagram {
 	private Map<String, ClassFormat> classFormatCollection;
 	private List<Relation> relations;
 	private int width, height;
 
 	public UMLClassDiagram(int width, int height) {
-		super();
 		classFormatCollection = new TreeMap<>();
 		relations = new ArrayList<>();
 		setWidth(width);
@@ -20,7 +19,6 @@ public class UMLClassDiagram extends Observable {
 	}
 
 	public UMLClassDiagram() {
-		super();
 		setWidth(0);
 		setHeight(0);
 		classFormatCollection = new TreeMap<>();
@@ -42,7 +40,6 @@ public class UMLClassDiagram extends Observable {
 		}
 		setHeight(diagram.getHeight());
 		setWidth(diagram.getWidth());
-		notifyObservers();
 	}
 
 	public int getWidth() {
@@ -61,26 +58,17 @@ public class UMLClassDiagram extends Observable {
 		this.height = height;
 	}
 
-	@Override
-	public void notifyObservers() {
-		setChanged();
-		super.notifyObservers();
-	}
-
 	public void addToDiagram(ClassFormat format) {
 		classFormatCollection.put(format.getClassName(), format);
-		notifyObservers();
 	}
 
 	public void addToDiagram(Relation relation) {
 		relations.add(relation);
-		notifyObservers();
 
 	}
 
 	public void setClassFormatLocation(String className, int x, int y) throws Exception {
 		getClassFormat(className).setLocation(x, y);
-		notifyObservers();
 	}
 
 	public Iterator<ClassFormat> createClassFormatIterator() {
@@ -101,14 +89,12 @@ public class UMLClassDiagram extends Observable {
 	public void removeClassFormat(ClassFormat classFormat) {
 		if (classFormat != null && classFormatCollection.containsKey(classFormat.getClassName())) {
 			classFormatCollection.remove(classFormat.getClassName());
-			notifyObservers();
 		}
 	}
 
 	public void removeRelation(Relation relation) {
 		if (relation != null && relations.contains(relation)) {
 			relations.remove(relation);
-			notifyObservers();
 		}
 	}
 

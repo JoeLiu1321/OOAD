@@ -2,26 +2,26 @@ package drawer;
 
 import visitor.DrawVisitor;
 import visitor.Visitor;
-import model.diagrams.UMLClassDiagram;
+import model.diagrams.ObservableDiagram;
 import model.geometric.ClassFormat;
 import model.geometric.Relation;
+import observer.Observable;
+import observer.Observer;
 
 import java.awt.*;
 import java.util.Iterator;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JPanel;
 import canvas.Canvas;
 import canvas.SwingCanvas;
 
 public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
-	private UMLClassDiagram diagram;
+	private ObservableDiagram diagram;
 
-	public UMLClassDiagramDrawer(UMLClassDiagram diagram) {
+	public UMLClassDiagramDrawer(ObservableDiagram diagram) {
 		super();
 		this.diagram = diagram;
-		this.diagram.addObserver(this);
+		this.diagram.registerObserver(this);
 		setSize(diagram.getWidth(), diagram.getHeight());
 	}
 
@@ -43,8 +43,9 @@ public class UMLClassDiagramDrawer extends JPanel implements Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o) {
 		repaint();
+
 	}
 
 }

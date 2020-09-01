@@ -7,19 +7,17 @@ import output.DiagramReader;
 import output.DiagramWriter;
 import output.ConvertStrategy;
 import output.OutputStrategy;
-import output.TextConvertStrategy;
-import output.TextOutputStrategy;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class ListenerHandler {
+public abstract class ListenerHandler {
     private UMLClassDiagram diagram;
     private String autoSavePath;
     private ArrangeCalculator arrangeCalculator;
 
-    public ListenerHandler(UMLClassDiagram diagram) {
-        this.autoSavePath = System.getProperty("user.dir") + "/Untitled_diagram.diagram";
+    public ListenerHandler(UMLClassDiagram diagram, String fileExtension) {
+        this.autoSavePath = System.getProperty("user.dir") + "/Untitled_diagram" + fileExtension;
         this.diagram = diagram;
         arrangeCalculator = new ArrangeCalculator(diagram);
     }
@@ -46,7 +44,7 @@ public class ListenerHandler {
 
     public void executeSaveDiagram(String path) {
         autoSavePath = path;
-        OutputStrategy strategy = new TextOutputStrategy(diagram);
+        OutputStrategy strategy = outputStrategyFactoryMethod(diagram);
         DiagramWriter diagramWriter = new DiagramWriter(strategy);
         try {
             diagramWriter.write(path);
@@ -57,7 +55,7 @@ public class ListenerHandler {
 
     public void executeOpenDiagram(String path) {
         try {
-            ConvertStrategy strategy = new TextConvertStrategy();
+            ConvertStrategy strategy = convertStrategyFactoryMethod();
             DiagramReader diagramReader = new DiagramReader(strategy);
             UMLClassDiagram diagram = diagramReader.read(path);
             this.diagram.setDiagram(diagram);
@@ -66,4 +64,8 @@ public class ListenerHandler {
         }
 
     }
+
+    protected abstract OutputStrategy outputStrategyFactoryMethod(UMLClassDiagram diagram);
+
+    protected abstract ConvertStrategy convertStrategyFactoryMethod();
 }

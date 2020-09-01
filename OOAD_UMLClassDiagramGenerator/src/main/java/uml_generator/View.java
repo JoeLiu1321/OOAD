@@ -15,12 +15,14 @@ import javax.swing.table.TableColumn;
 
 import model.ClassDetailInfo.*;
 import adapter.ClassDetailInfoDTO;
+import model.diagrams.ObservableDiagram;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
 import model.geometric.ClassFormat;
 import drawer.UMLClassDiagramDrawer;
 import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;
+import listeners.JsonListenerHandler;
 import listeners.Listener;
 import listeners.ListenerHandler;
 import viewTool.Tool;
@@ -37,7 +39,7 @@ public class View {
 	private Tool tool = new Tool();
 	private int counter = 1;
 	private ClassDetailInfo classDetailInfo = new ClassDetailInfo();
-	UMLClassDiagram diagram;
+	ObservableDiagram diagram;
 	ClassUnitGenerator unitGenerator;
 	UMLClassDiagramDrawer drawer;
 	ArrangeCalculator arrangeCalculator;
@@ -46,12 +48,12 @@ public class View {
 
 	public JPanel setUpDrawer(int width, int height) {
 		int x = width - 50;
-		diagram = new UMLClassDiagram(width, height);
+		diagram = new ObservableDiagram(width, height);
 		unitGenerator = new ClassUnitGenerator();
 		drawer = new UMLClassDiagramDrawer(diagram);
 		arrangeCalculator = new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();
-		listenerHandler = new ListenerHandler(diagram);
+		listenerHandler = new JsonListenerHandler(diagram);
 		listener = new Listener(drawer, listenerHandler);
 		ButtonGroup group = new ButtonGroup();
 		ButtonGroup relationGroup = new ButtonGroup();

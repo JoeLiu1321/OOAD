@@ -3,10 +3,13 @@ package application;
 import java.awt.*;
 import java.util.Arrays;
 import javax.swing.*;
+
+import model.diagrams.ObservableDiagram;
 import model.diagrams.UMLClassDiagram;
 import drawer.UMLClassDiagramDrawer;
 import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;
+import listeners.JsonListenerHandler;
 import listeners.Listener;
 import listeners.ListenerHandler;
 
@@ -19,7 +22,7 @@ public class Main {
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension d = tk.getScreenSize();
 		int width = (int) d.getWidth(), height = (int) d.getHeight();
-		UMLClassDiagram diagram = new UMLClassDiagram(width, height);
+		ObservableDiagram diagram = new ObservableDiagram(width, height);
 		ClassUnitGenerator unitGenerator = new ClassUnitGenerator();
 		for (String className : classNames) {
 			unitGenerator.setClassAttributes(className, Arrays.asList(methods), Arrays.asList(variables));
@@ -28,7 +31,7 @@ public class Main {
 		UMLClassDiagramDrawer drawer = new UMLClassDiagramDrawer(diagram);
 		ArrangeCalculator arrangeCalculator = new ArrangeCalculator(diagram);
 		arrangeCalculator.arrange();
-		ListenerHandler listenerHandler = new ListenerHandler(diagram);
+		ListenerHandler listenerHandler = new JsonListenerHandler(diagram);
 		Listener listener = new Listener(drawer, listenerHandler);
 		JPanel checkBoxGroup = setUpButtonGroup(listener);
 		JButton outputButton = new JButton("Output");
