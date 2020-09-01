@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.diagrams.ClassFormatType;
-import visitor.Visitor;
 
 public abstract class ClassFormat extends Rectangle implements Visitable {
 	private String className;
@@ -17,6 +16,11 @@ public abstract class ClassFormat extends Rectangle implements Visitable {
 	public ClassFormat(String className, int x, int y, int width, int height) {
 		super(x, y, width, height);
 		setClassName(className);
+		relations = new ArrayList<>();
+
+	}
+
+	public ClassFormat() {
 		relations = new ArrayList<>();
 	}
 

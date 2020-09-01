@@ -14,10 +14,6 @@ public class Relation implements Visitable {
         setStartClass(startClass);
         setEndClass(endClass);
         setRelationType(relationType);
-        setStartX(startClass.x);
-        setStartY(startClass.y);
-        setEndX(endClass.x);
-        setEndY(endClass.y);
         startClass.regisiterRelation(this);
         endClass.regisiterRelation(this);
     }
@@ -68,14 +64,22 @@ public class Relation implements Visitable {
 
     public void setStartClass(ClassFormat startClass) {
         this.startClass = startClass;
+        setStartX(startClass.x);
+        setStartY(startClass.y);
     }
 
     public void setEndClass(ClassFormat endClass) {
         this.endClass = endClass;
+        setEndX(endClass.x);
+        setEndY(endClass.y);
     }
 
     public void setRelationType(RelationType relationType) {
         this.relationType = relationType;
+    }
+
+    public void setRelationType(String relationType) {
+        setRelationType(RelationType.valueOf(relationType));
     }
 
     public boolean contains(Point location) {

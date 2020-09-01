@@ -10,6 +10,10 @@ public class ConcreteFormat extends ClassFormat {
 		super(className, x, y, width, height);
 	}
 
+	public ConcreteFormat() {
+		super();
+	}
+
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);

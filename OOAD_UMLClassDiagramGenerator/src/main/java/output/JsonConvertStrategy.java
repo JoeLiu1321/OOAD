@@ -1,22 +1,21 @@
 package output;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map.Entry;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import generator.ClassRelationGenerator;
-import generator.ClassUnitGenerator;
 import model.diagrams.ClassFormatType;
 import model.diagrams.RelationType;
 import model.diagrams.UMLClassDiagram;
 import model.geometric.ClassFormat;
+import model.geometric.ConcreteFormat;
+import model.geometric.InterfaceFormat;
 import model.geometric.Relation;
 
 public class JsonConvertStrategy implements ConvertStrategy {
@@ -47,37 +46,19 @@ public class JsonConvertStrategy implements ConvertStrategy {
         Iterator<JsonElement> relationIt = relations.iterator();
         while (relationIt.hasNext()) {
             JsonObject relationJson = relationIt.next().getAsJsonObject();
-            JsonObject startClass = relationJson.get("startClass").getAsJsonObject();
-            JsonObject endClass = relationJson.get("endClass").getAsJsonObject();
-            String startClassName = startClass.get("className").getAsString();
-            String endClassName = endClass.get("className").getAsString();
-            String relationType = relationJson.get("relationType").getAsString();
-            Relation relation = buildRelation(diagram.getClassFormat(startClassName),
-                    diagram.getClassFormat(endClassName), relationType);
-            int startX = relationJson.get("startX").getAsInt();
-            int startY = relationJson.get("startY").getAsInt();
-            int endX = relationJson.get("endX").getAsInt();
-            int endY = relationJson.get("endY").getAsInt();
-            relation.setStartX(startX);
-            relation.setStartY(startY);
-            relation.setEndX(endX);
-            relation.setEndY(endY);
+            Relation relation = buildRelation(relationJson);
             diagram.addToDiagram(relation);
         }
         return diagram;
     }
 
     private ClassFormat buildClassFormat(JsonObject classFormatJson) {
+        Gson g = new Gson();
         String type = classFormatJson.get("type").getAsString();
         ClassFormatType clsType = ClassFormatType.valueOf(type);
-        String className = classFormatJson.get("className").getAsString();
-        List<String> methods = getAsList(classFormatJson.get("methods").getAsJsonArray());
-        List<String> variables = getAsList(classFormatJson.get("variables").getAsJsonArray());
-
-        ClassUnitGenerator generator = new ClassUnitGenerator(className, methods, variables);
         if (clsType == ClassFormatType.CONCRETE)
-            return generator.generateConcreteClassFormat();
-        return generator.generateInterfaceClassFormat();
+            return g.fromJson(classFormatJson, ConcreteFormat.class);
+        return g.fromJson(classFormatJson, InterfaceFormat.class);
     }
 
     private Relation buildRelation(ClassFormat startClass, ClassFormat endClass, String relationType) {
@@ -86,15 +67,21 @@ public class JsonConvertStrategy implements ConvertStrategy {
         return generator.generateRelation(startClass, endClass, type);
     }
 
-    private List<String> getAsList(JsonArray array) {
-        List<String> listResult = new ArrayList<String>();
-        Iterator<JsonElement> it = array.iterator();
-        while (it.hasNext()) {
-            String data = it.next().getAsString();
-            listResult.add(data);
-        }
-        return listResult;
-
+    private Relation buildRelation(JsonObject relationJson) {
+        JsonObject startClassJson = relationJson.get("startClass").getAsJsonObject();
+        JsonObject endClassJson = relationJson.get("endClass").getAsJsonObject();
+        ClassFormat startClass = buildClassFormat(startClassJson), endClass = buildClassFormat(endClassJson);
+        String relationType = relationJson.get("relationType").getAsString();
+        Relation relation = buildRelation(startClass, endClass, relationType);
+        int startX = relationJson.get("startX").getAsInt();
+        int startY = relationJson.get("startY").getAsInt();
+        int endX = relationJson.get("endX").getAsInt();
+        int endY = relationJson.get("endY").getAsInt();
+        relation.setStartX(startX);
+        relation.setStartY(startY);
+        relation.setEndX(endX);
+        relation.setEndY(endY);
+        return relation;
     }
 
 }

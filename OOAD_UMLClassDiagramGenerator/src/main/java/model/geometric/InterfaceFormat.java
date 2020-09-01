@@ -10,6 +10,10 @@ public class InterfaceFormat extends ClassFormat {
 		super(className, x, y, width, height);
 	}
 
+	public InterfaceFormat() {
+		super();
+	}
+
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
