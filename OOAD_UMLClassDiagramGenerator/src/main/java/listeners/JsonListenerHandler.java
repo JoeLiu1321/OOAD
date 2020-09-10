@@ -12,12 +12,12 @@ public class JsonListenerHandler extends ListenerHandler {
     }
 
     @Override
-    protected OutputStrategy outputStrategyFactoryMethod(UMLClassDiagram diagram) {
+    protected OutputStrategy getOutputStrategy(UMLClassDiagram diagram) {
         return new JsonOutputStrategy(diagram);
     }
 
     @Override
-    protected ConvertStrategy convertStrategyFactoryMethod() {
+    protected ConvertStrategy getConvertStrategy() {
         return new JsonConvertStrategy();
     }
 

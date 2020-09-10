@@ -12,12 +12,12 @@ public class TextListenerHandler extends ListenerHandler {
     }
 
     @Override
-    protected OutputStrategy outputStrategyFactoryMethod(UMLClassDiagram diagram) {
+    protected OutputStrategy getOutputStrategy(UMLClassDiagram diagram) {
         return new TextOutputStrategy(diagram);
     }
 
     @Override
-    protected ConvertStrategy convertStrategyFactoryMethod() {
+    protected ConvertStrategy getConvertStrategy() {
         return new TextConvertStrategy();
     }
 }

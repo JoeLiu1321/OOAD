@@ -5,7 +5,6 @@ import java.util.Arrays;
 import javax.swing.*;
 
 import model.diagrams.ObservableDiagram;
-import model.diagrams.UMLClassDiagram;
 import drawer.UMLClassDiagramDrawer;
 import generator.ArrangeCalculator;
 import generator.ClassUnitGenerator;

@@ -58,7 +58,8 @@ public class JsonConvertStrategy implements ConvertStrategy {
         ClassFormatType clsType = ClassFormatType.valueOf(type);
         if (clsType == ClassFormatType.CONCRETE)
             return g.fromJson(classFormatJson, ConcreteFormat.class);
-        return g.fromJson(classFormatJson, InterfaceFormat.class);
+        else
+            return g.fromJson(classFormatJson, InterfaceFormat.class);
     }
 
     private Relation buildRelation(ClassFormat startClass, ClassFormat endClass, String relationType) {

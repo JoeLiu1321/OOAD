@@ -17,7 +17,6 @@ import model.ClassDetailInfo.*;
 import adapter.ClassDetailInfoDTO;
 import model.diagrams.ObservableDiagram;
 import model.diagrams.RelationType;
-import model.diagrams.UMLClassDiagram;
 import model.geometric.ClassFormat;
 import drawer.UMLClassDiagramDrawer;
 import generator.ArrangeCalculator;

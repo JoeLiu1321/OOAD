@@ -8,7 +8,7 @@ import output.DiagramWriter;
 import output.ConvertStrategy;
 import output.OutputStrategy;
 
-import java.awt.*;
+import java.awt.Point;
 import java.io.IOException;
 
 public abstract class ListenerHandler {
@@ -44,7 +44,7 @@ public abstract class ListenerHandler {
 
     public void executeSaveDiagram(String path) {
         autoSavePath = path;
-        OutputStrategy strategy = outputStrategyFactoryMethod(diagram);
+        OutputStrategy strategy = getOutputStrategy(diagram);
         DiagramWriter diagramWriter = new DiagramWriter(strategy);
         try {
             diagramWriter.write(path);
@@ -55,7 +55,7 @@ public abstract class ListenerHandler {
 
     public void executeOpenDiagram(String path) {
         try {
-            ConvertStrategy strategy = convertStrategyFactoryMethod();
+            ConvertStrategy strategy = getConvertStrategy();
             DiagramReader diagramReader = new DiagramReader(strategy);
             UMLClassDiagram diagram = diagramReader.read(path);
             this.diagram.setDiagram(diagram);
@@ -65,7 +65,7 @@ public abstract class ListenerHandler {
 
     }
 
-    protected abstract OutputStrategy outputStrategyFactoryMethod(UMLClassDiagram diagram);
+    protected abstract OutputStrategy getOutputStrategy(UMLClassDiagram diagram);
 
-    protected abstract ConvertStrategy convertStrategyFactoryMethod();
+    protected abstract ConvertStrategy getConvertStrategy();
 }
